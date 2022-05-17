@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
         setContentView(R.layout.activity_main);
 
         initializeAdapter();
+
     }
 
     private void initializeAdapter(){
