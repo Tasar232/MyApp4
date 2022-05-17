@@ -12,26 +12,31 @@ import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp4.R;
 import com.example.myapp4.logic.cars.Car;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
     private LayoutInflater inflater;
-    private List<Car> cars;
-    private Uri uri;
-    private int Pick_image = 1;
+    private ArrayList<Car> cars;
     private ItemOnClickListenerCar listener;
     private ItemOnLongClickListenerCar longListener;
 
-    public AdapterCar(Context context, List<Car> cars, ItemOnClickListenerCar listener, ItemOnLongClickListenerCar longListener){
+    public AdapterCar(Context context, ArrayList<Car> cars, ItemOnClickListenerCar listener, ItemOnLongClickListenerCar longListener){
         this.cars = cars;
         this.inflater = LayoutInflater.from(context);
         this.listener = listener;
         this.longListener = longListener;
+    }
+
+    public void updateData(ArrayList<Car> cars) {
+        cars.clear();
+        cars.addAll(cars);
+        notifyDataSetChanged();
     }
 
     @Override

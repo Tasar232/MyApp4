@@ -39,15 +39,32 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), AddCarActivity.class);
                 startActivity(intent);
+                //
+                //App.readData();
                 //initializeAdapter();
-                RecyclerView recyclerView = findViewById(R.id.list_cars);
-                recyclerView.getAdapter().notifyDataSetChanged();
-                //recyclerView.getAdapter().notifyDataSetChanged();
+
+                //RecyclerView recyclerView = findViewById(R.id.list_cars);
+                //isChangingConfigurations();
+                //adapter.notifyDataSetChanged();
                 //recyclerView.notify();
                 //initializeAdapter();
+                //onRestart();
+                //onResume();
+                //adapter.updateData(App.getListCars());
             }
         });
 
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        initializeAdapter();
     }
 
 
@@ -83,7 +100,8 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
                     case R.id.deleteContext:
                         int id = App.getListCars().get(position).getId();
                         App.deleteCar(id);
-                        //initializeAdapter();
+                        initializeAdapter();
+                        //onRestart();
                         break;
                 }
                 return false;
@@ -97,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
         super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+
+
     }
 
 

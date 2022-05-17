@@ -33,20 +33,51 @@ public class AddCarActivity extends AppCompatActivity {
         edGosNum = findViewById(R.id.tvGosNum);
         btAdd = findViewById(R.id.btAdd);
 
+
+
         btAdd.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                App.addCar(edMark.getText().toString(),
-                        edModel.getText().toString(),
-                        Integer.parseInt(edMil.getText().toString()),
-                        Integer.parseInt(edYear.getText().toString()),
-                        edSer.getText().toString(),
-                        Integer.parseInt(edNum.getText().toString()),
-                        edGosNum.getText().toString()
+                String mark = edMark.getText().toString();
+                String model = edModel.getText().toString();
+                int mileage = 0;
+                try{
+                    mileage = Integer.parseInt(edMil.getText().toString());
+                }
+                catch(NumberFormatException e){
+                }
+                int year = 0;
+                try {
+                    year = Integer.parseInt(edYear.getText().toString());
+                }
+                catch (NumberFormatException e){
+                }
+                String serial = edSer.getText().toString();
+                int number = 0;
+                try {
+                    number = Integer.parseInt(edNum.getText().toString());
+                }
+                catch (NumberFormatException e){
+                }
+                String gos = edGosNum.getText().toString();
+
+                final int mil = mileage;
+                final int yea = year;
+                final int num = number;
+                App.addCar(mark,
+                        model,
+                        mil,
+                        yea,
+                        serial,
+                        num,
+                        gos
                 );
+                App.readData();
                 finish();
             }
         });
+
 
 
     }

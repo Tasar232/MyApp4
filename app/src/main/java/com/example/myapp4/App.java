@@ -20,7 +20,7 @@ public class App extends Application {
         app=this;
 
         db_car = new DBhelper(this);
-        listCars = db_car.getData();
+        readData();
         //Connect DB
         //setInitialData();
     }
@@ -28,14 +28,18 @@ public class App extends Application {
         return listCars;
     }
 
-
+    public static void readData(){
+        listCars = db_car.getData();
+    }
 
     public static void addCar( String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber){
         db_car.addCar(mark, model, mileage, year, seriesSTS, numberSTS, gosNumber);
+        readData();
     }
 
     public static void deleteCar(int id){
         db_car.deleteCar(id);
+        readData();
     }
 
     private void setInitialData(){
