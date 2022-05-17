@@ -14,10 +14,11 @@ public class Car {
     private int mileageCar;
     private String seriesSTS;
     private int numberSTS;
+    private String gosNumber;
     private ArrayList<PolicyOSAGO> listPolicy;
     private ArrayList<CarSTO> listSto;
 
-    public Car(int id, String mark, String model, int year, int mileage, String seriesSTS, int numberSTS) {
+    public Car(int id, String mark, String model, int year, int mileage, String seriesSTS, int numberSTS, String gosNumber) {
         this.id = id;
         this.mark = mark;
         this.model = model;
@@ -25,6 +26,7 @@ public class Car {
         this.mileageCar = mileage;
         this.seriesSTS = seriesSTS;
         this.numberSTS = numberSTS;
+        this.gosNumber = gosNumber;
         this.listPolicy =  new ArrayList<>();
         this.listSto = new ArrayList<>();
     }
@@ -39,6 +41,8 @@ public class Car {
     public String getModel() {
         return model;
     }
+
+    public String getGosNumber(){return gosNumber;}
 
     public int getYearCar(){return yearCar;}
 

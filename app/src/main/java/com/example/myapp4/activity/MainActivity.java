@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
                 startActivity(intent);
                 //initializeAdapter();
                 RecyclerView recyclerView = findViewById(R.id.list_cars);
+                recyclerView.getAdapter().notifyDataSetChanged();
                 //recyclerView.getAdapter().notifyDataSetChanged();
+                //recyclerView.notify();
+                //initializeAdapter();
             }
         });
 
@@ -54,6 +57,9 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
         adapter = new AdapterCar(this, App.getListCars(), this, this);
 
         recyclerView.setAdapter(adapter);
+
+        //recyclerView.refreshDrawableState();
+        //recyclerView.notify();
 
     }
 
@@ -75,6 +81,9 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
             public boolean onMenuItemClick(MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
+                        int id = App.getListCars().get(position).getId();
+                        App.deleteCar(id);
+                        //initializeAdapter();
                         break;
                 }
                 return false;

@@ -30,14 +30,12 @@ public class App extends Application {
 
 
 
-    public static void addCar( String mark, String model, int mileage, int year, String seriesSTS, int numberSTS){
-        /*int id = 1;
-        if (listCars.size() != 0){
-            id = listCars.get(listCars.size()-1).getId() + 1;
-        }
-        //listCars.add(new Car(id, mark, model, mileage, year, seriesSTS, numberSTS));*/
-        db_car.addCar(mark, model, mileage, year, seriesSTS, numberSTS);
-        //listCars = db_car.getData();
+    public static void addCar( String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber){
+        db_car.addCar(mark, model, mileage, year, seriesSTS, numberSTS, gosNumber);
+    }
+
+    public static void deleteCar(int id){
+        db_car.deleteCar(id);
     }
 
     private void setInitialData(){

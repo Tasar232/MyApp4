@@ -32,7 +32,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
-        android:text="Mileage"
+        android:text="999"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvModel" />
 
@@ -42,7 +42,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
-        android:text="Year"
+        android:text="1997"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvMileage" />
 
@@ -53,7 +53,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="24dp"
         android:editable="true"
-        android:text="Serial STS"
+        android:text="AAAA"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvYear" />
 
@@ -63,9 +63,19 @@
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
-        android:text="Number STS"
+        android:text="999999"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSerSTS" />
+
+    <EditText
+        android:id="@+id/tvGosNum"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:text="А111АА38"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNumSTS" />
 
     <Button
         android:id="@+id/btAdd"

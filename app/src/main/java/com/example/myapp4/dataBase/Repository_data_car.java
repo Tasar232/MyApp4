@@ -9,7 +9,7 @@ public interface Repository_data_car {
 
     public ArrayList<Car> getData();
 
-    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS);
+    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber);
     public void addSTO();
     public void addItem();
     public void addPolicy();
@@ -19,8 +19,8 @@ public interface Repository_data_car {
     public void updateItem();
     public void updatePolicy();
 
-    public void dropCar();
-    public void dropSTO();
-    public void dropItem();
-    public void dropPolicy();
+    public void deleteCar(int id);
+    public void deleteSTO();
+    public void deleteItem();
+    public void deletePolicy();
 }

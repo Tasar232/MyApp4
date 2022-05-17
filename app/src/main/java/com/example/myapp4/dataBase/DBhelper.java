@@ -23,6 +23,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     public static final String YEAR = "Year";
     public static final String SERIES_STS = "Series_sts";
     public static final String NUMBER_STS = "Number_sts";
+    public static final String GOS_NUMBER = "Gos_number";
 
     //STO
     public static final String TABLE_STO = "STO";
@@ -61,7 +62,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             MILEAGE + " INTEGER,\n" +
             YEAR + " INTEGER,\n" +
             SERIES_STS + " TEXT,\n" +
-            NUMBER_STS + " INTEGER\n" +
+            NUMBER_STS + " INTEGER,\n" +
+            GOS_NUMBER + " TEXT\n" +
             ");";
     private static final String CREATE_TABLE_TYPE_WORK = "CREATE TABLE " + TABLE_TYPE_WORK + " (\n" +
             ID_WORK + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -127,8 +129,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        //db.execSQL("ALTER TABLE " + TABLE_CAR + " ADD COLUMN " + GOS_NUMBER + " TEXT;");
     }
 
 
@@ -146,7 +148,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                 MILEAGE + ",\n" +
                 YEAR + ",\n" +
                 SERIES_STS + ",\n" +
-                NUMBER_STS + "\n" +
+                NUMBER_STS + ",\n" +
+                GOS_NUMBER + "\n" +
                 "FROM " + TABLE_CAR + "\n";
 
         try {
@@ -161,6 +164,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                     int Year = cursorCar.getColumnIndex(YEAR);
                     int SerSts = cursorCar.getColumnIndex(SERIES_STS);
                     int NumSts = cursorCar.getColumnIndex(NUMBER_STS);
+                    int GosNum = cursorCar.getColumnIndex(GOS_NUMBER);
                     Car car = new Car(
                             cursorCar.getInt(ID),
                             cursorCar.getString(Mark),
@@ -168,7 +172,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                             cursorCar.getInt(Mileage),
                             cursorCar.getInt(Year),
                             cursorCar.getString(SerSts),
-                            cursorCar.getInt(NumSts)
+                            cursorCar.getInt(NumSts),
+                            cursorCar.getString(GosNum)
                     );
                     listCar.add(car);
                 }
@@ -192,11 +197,11 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS) {
+    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO " + TABLE_CAR +
-                " (" + MARK + "," + MODEL + "," + MILEAGE + "," + YEAR + "," + SERIES_STS + "," + NUMBER_STS +") " +
-                "VALUES ('" + mark + "', '" + model + "'," + mileage + "," + year + ", '" + seriesSTS + "'," + numberSTS +")"
+                " (" + MARK + "," + MODEL + "," + MILEAGE + "," + YEAR + "," + SERIES_STS + "," + NUMBER_STS + "," + GOS_NUMBER +") " +
+                "VALUES ('" + mark + "', '" + model + "', " + mileage + ", " + year + ", '" + seriesSTS + "', " + numberSTS + ", '" + gosNumber +"')"
         );
     }
 
@@ -236,22 +241,25 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void dropCar() {
+    public void deleteCar(int id) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_CAR + " \n" +
+                "WHERE " + ID_CAR + " = " + id
+                );
+    }
+
+    @Override
+    public void deleteSTO() {
 
     }
 
     @Override
-    public void dropSTO() {
+    public void deleteItem() {
 
     }
 
     @Override
-    public void dropItem() {
-
-    }
-
-    @Override
-    public void dropPolicy() {
+    public void deletePolicy() {
 
     }
 }

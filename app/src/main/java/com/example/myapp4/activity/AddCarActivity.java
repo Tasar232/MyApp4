@@ -17,6 +17,7 @@ public class AddCarActivity extends AppCompatActivity {
     EditText edYear;
     EditText edSer;
     EditText edNum;
+    EditText edGosNum;
     Button btAdd;
 
     @Override
@@ -29,6 +30,7 @@ public class AddCarActivity extends AppCompatActivity {
         edYear = findViewById(R.id.tvYear);
         edSer = findViewById(R.id.tvSerSTS);
         edNum = findViewById(R.id.tvNumSTS);
+        edGosNum = findViewById(R.id.tvGosNum);
         btAdd = findViewById(R.id.btAdd);
 
         btAdd.setOnClickListener(new View.OnClickListener() {
@@ -39,7 +41,8 @@ public class AddCarActivity extends AppCompatActivity {
                         Integer.parseInt(edMil.getText().toString()),
                         Integer.parseInt(edYear.getText().toString()),
                         edSer.getText().toString(),
-                        Integer.parseInt(edNum.getText().toString())
+                        Integer.parseInt(edNum.getText().toString()),
+                        edGosNum.getText().toString()
                 );
                 finish();
             }
