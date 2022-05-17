@@ -23,7 +23,7 @@ public class App extends Application {
     }
 
     public static void addCar(String model, String mark, int year, int mileage, String seriesSTS, int numberSTS){
-        listCars.add(new Car (mark, model, year, mileage, seriesSTS, numberSTS ));
+        //listCars.add(new Car (mark, model, year, mileage, seriesSTS, numberSTS ));
     }
 
     private void setInitialData(){
