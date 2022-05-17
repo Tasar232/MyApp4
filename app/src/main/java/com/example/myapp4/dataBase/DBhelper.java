@@ -99,8 +99,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             " FOREIGN KEY(" + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ")\n" +
             ");";
 
-    public DBhelper(Context context, String name, int version) {
-        super(context, name, null, version);
+    public DBhelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
@@ -111,9 +111,18 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         db.execSQL(CREATE_TABLE_ITEM);
         db.execSQL(CREATE_TABLE_OSAGO);
 
-        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK + " (" + ID_WORK + ", "+ TYPE_WORK +") VALUES (" + 1 + ", 'Расходники')");
-        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK + " (" + ID_WORK + ", "+ TYPE_WORK +") VALUES (" + 2 + ", 'Ремонт')");
-        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK + " (" + ID_WORK + ", "+ TYPE_WORK +") VALUES (" + 3 + ", 'Ремонт своими рукми')");
+        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
+                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
+                "VALUES (" + 1 + ", 'Расходники')"
+        );
+        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
+                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
+                "VALUES (" + 2 + ", 'Ремонт')"
+        );
+        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
+                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
+                "VALUES (" + 3 + ", 'Ремонт своими рукми')"
+        );
 
     }
 
@@ -126,7 +135,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     @Override
     public ArrayList<Car> getData() {
         SQLiteDatabase db = getWritableDatabase();
-        Cursor cursorCar;
+        Cursor cursorCar = null;
         ArrayList<Car> listCar = new ArrayList<>();
         //String GET_COUNT_CAR_QUERY = "SELECT COUNT(*) FROM " + TABLE_CAR;
 
@@ -136,7 +145,9 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                 MODEL + ",\n" +
                 MILEAGE + ",\n" +
                 YEAR + ",\n" +
-                "FROM" + TABLE_CAR + "\n";
+                SERIES_STS + ",\n" +
+                NUMBER_STS + "\n" +
+                "FROM " + TABLE_CAR + "\n";
 
         try {
             cursorCar = db.rawQuery(GET_CAR_QUERY, null);
@@ -159,22 +170,34 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                             cursorCar.getString(SerSts),
                             cursorCar.getInt(NumSts)
                     );
+                    listCar.add(car);
                 }
                 while (cursorCar.moveToNext());
             }
             else {
+
                 //row count 0
             }
         }
         catch (Exception ex){
 
+        } 
+        finally {
+            if (cursorCar != null && !cursorCar.isClosed()) {
+                cursorCar.close();
         }
+    }
+        
         return listCar;
     }
 
     @Override
-    public void addCar() {
-
+    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO " + TABLE_CAR +
+                " (" + MARK + "," + MODEL + "," + MILEAGE + "," + YEAR + "," + SERIES_STS + "," + NUMBER_STS +") " +
+                "VALUES ('" + mark + "', '" + model + "'," + mileage + "," + year + ", '" + seriesSTS + "'," + numberSTS +")"
+        );
     }
 
     @Override

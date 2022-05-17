@@ -30,6 +30,8 @@ public class Car {
     }
 
     //Что касается машины
+    public int getId(){return id;}
+
     public String getMark() {
         return mark;
     }

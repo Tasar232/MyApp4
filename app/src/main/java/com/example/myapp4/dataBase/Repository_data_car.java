@@ -9,7 +9,7 @@ public interface Repository_data_car {
 
     public ArrayList<Car> getData();
 
-    public void addCar();
+    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS);
     public void addSTO();
     public void addItem();
     public void addPolicy();

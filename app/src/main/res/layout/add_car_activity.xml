@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AddCarActivity">
+
+    <EditText
+        android:id="@+id/tvMark"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="55dp"
+        android:text="Mark"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvModel"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="29dp"
+        android:text="Model"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMark" />
+
+    <EditText
+        android:id="@+id/tvMileage"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:text="Mileage"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvModel" />
+
+    <EditText
+        android:id="@+id/tvYear"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="28dp"
+        android:text="Year"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMileage" />
+
+    <EditText
+        android:id="@+id/tvSerSTS"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="24dp"
+        android:editable="true"
+        android:text="Serial STS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+
+    <EditText
+        android:id="@+id/tvNumSTS"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="20dp"
+        android:text="Number STS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSerSTS" />
+
+    <Button
+        android:id="@+id/btAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="39dp"
+        android:layout_marginBottom="62dp"
+        android:text="Add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
