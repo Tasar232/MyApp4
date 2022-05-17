@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
 
         initializeAdapter();
 
+
     }
 
     private void initializeAdapter(){
