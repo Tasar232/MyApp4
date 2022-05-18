@@ -23,21 +23,18 @@ import java.util.ArrayList;
 public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
     private LayoutInflater inflater;
     private ArrayList<Car> cars;
+
     private ItemOnClickListenerCar listener;
     private ItemOnLongClickListenerCar longListener;
 
     public AdapterCar(Context context, ArrayList<Car> cars, ItemOnClickListenerCar listener, ItemOnLongClickListenerCar longListener){
         this.cars = cars;
         this.inflater = LayoutInflater.from(context);
+
         this.listener = listener;
         this.longListener = longListener;
     }
 
-    public void updateData(ArrayList<Car> cars) {
-        cars.clear();
-        cars.addAll(cars);
-        notifyDataSetChanged();
-    }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -51,8 +48,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
         Car car = cars.get(position);
         holder.markView.setText(car.getMark());
         holder.modelView.setText(car.getModel());
-//        holder.buttonView.setText("Подробнее");
-        holder.imCar.setImageResource(R.drawable.car);
+        holder.imCar.setImageResource(R.drawable.ic_car);
 
     }
 
@@ -64,9 +60,8 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         public TextView markView, modelView;
-        //public Button buttonView;
         public ImageView imCar;
-        //private final int Pick_image = 1;
+
         ItemOnClickListenerCar itemOnClickListener;
         ItemOnLongClickListenerCar itemOnLongClickListenerCar;
 
@@ -74,7 +69,6 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
             super(view);
             markView = view.findViewById(R.id.markLoc);
             modelView = view.findViewById(R.id.modelLoc);
-            //buttonView = view.findViewById(R.id.button);
             imCar = view.findViewById(R.id.iVCar);
 
             itemView.setOnClickListener(this);
@@ -90,23 +84,23 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
 
         @Override
         public void onClick(View view) {
-            itemOnClickListener.onClickListenerRecyclerViewMore(getAdapterPosition());
+            itemOnClickListener.onClickListenerRecyclerViewMore_Car(getAdapterPosition());
         }
 
 
         @Override
         public boolean onLongClick(View view) {
-            itemOnLongClickListenerCar.onLongClickListenerRecyclerViewMore(getAdapterPosition(), view);
+            itemOnLongClickListenerCar.onLongClickListenerRecyclerViewMore_Car(getAdapterPosition(), view);
             return false;
         }
     }
 
     public interface ItemOnClickListenerCar{
-        void onClickListenerRecyclerViewMore(int position);
+        void onClickListenerRecyclerViewMore_Car(int position);
     }
 
     public interface ItemOnLongClickListenerCar{
-        void onLongClickListenerRecyclerViewMore(int position, View view);
+        void onLongClickListenerRecyclerViewMore_Car(int position, View view);
     }
 
 

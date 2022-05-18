@@ -7,29 +7,43 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.myapp4.App;
 import com.example.myapp4.R;
 import com.example.myapp4.logic.cars.Car;
 
 public class List_sto_car_Activity extends AppCompatActivity {
-    TextView marklocal, modellocal;
-    ImageView imCarLocal;
-   //Repository repository ;
+    private TextView mark, model, mileage, year, gos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_sto_car);
-        //repository = App.getRepository();
-        marklocal = findViewById(R.id.markLoc);
-        modellocal = findViewById(R.id.modelLoc);
-        imCarLocal = findViewById(R.id.ivCarLoc);
+        mark = findViewById(R.id.tvMark2);
+        model = findViewById(R.id.tvModel2);
+        mileage = findViewById(R.id.tvMileage2);
+        year = findViewById(R.id.tvYear2);
+        gos = findViewById(R.id.tvGos2);
 
         Intent intent = getIntent();
 
-        Car car = (Car) intent.getParcelableExtra("car");
+        int id =  intent.getIntExtra("id", 0);
+        Car car = App.getCarForID(id);
 
-        marklocal.setText(car.getMark());
-        modellocal.setText(car.getModel());
-        imCarLocal.setImageResource(R.drawable.car);
+        mark.setText(car.getMark());
+        model.setText(car.getModel());
+        if(car.getMileageCar() == 0){
+            mileage.setText("Не указано");
+        }
+        else {
+            mileage.setText(String.valueOf(car.getMileageCar()));
+        }
+        if(car.getYearCar() == 0){
+            year.setText("Не указано");
+        }
+        else {
+            year.setText(String.valueOf(car.getYearCar()));
+        }
+        gos.setText(car.getGosNumber());
+
     }
 }

@@ -18,7 +18,7 @@ public class Car {
     private ArrayList<PolicyOSAGO> listPolicy;
     private ArrayList<CarSTO> listSto;
 
-    public Car(int id, String mark, String model, int year, int mileage, String seriesSTS, int numberSTS, String gosNumber) {
+    public Car(int id, String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber) {
         this.id = id;
         this.mark = mark;
         this.model = model;

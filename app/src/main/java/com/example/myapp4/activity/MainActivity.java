@@ -83,13 +83,15 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
 
 
     @Override
-    public void onClickListenerRecyclerViewMore(int position) {
+    public void onClickListenerRecyclerViewMore_Car(int position) {
         Intent intent = new Intent(this, List_sto_car_Activity.class);
+        int id = App.getListCars().get(position).getId();
+        intent.putExtra("id", id);
         startActivity(intent);
     }
 
     @Override
-    public void onLongClickListenerRecyclerViewMore(int position, View view) {
+    public void onLongClickListenerRecyclerViewMore_Car(int position, View view) {
         PopupMenu popup = new PopupMenu(this, view);
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {

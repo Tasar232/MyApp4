@@ -77,8 +77,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             NAME_COMPANY + " TEXT,\n" +
             TEXT_DESCRIPTION + " TEXT,\n" +
             TOTAL_PRICE + " INTEGER,\n" +
-            " FOREIGN KEY( " + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + "),\n" +
-            " FOREIGN KEY( " + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + ")\n" +
+            " FOREIGN KEY( " + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ") ON DELETE CASCADE,\n" +
+            " FOREIGN KEY( " + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + ") ON DELETE CASCADE\n" +
             ");";
     private static final String CREATE_TABLE_ITEM = "CREATE TABLE " + TABLE_ITEM + " (\n" +
             ID_ITEM + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -87,8 +87,8 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             NAME_ITEM + " TEXT,\n" +
             COUNT_ITEM + " INTEGER,\n" +
             PRICE_ITEM + " INTEGER,\n" +
-            " FOREIGN KEY(" + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + "),\n" +
-            " FOREIGN KEY(" + ID_STO + ") REFERENCES " + TABLE_STO + "(" + ID_STO + ")\n" +
+            " FOREIGN KEY(" + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + ") ON DELETE CASCADE,\n" +
+            " FOREIGN KEY(" + ID_STO + ") REFERENCES " + TABLE_STO + "(" + ID_STO + ") ON DELETE CASCADE\n" +
             ");";
     private static final String CREATE_TABLE_OSAGO = "CREATE TABLE " + TABLE_OSAGO + " (\n" +
             ID_OSAGO + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
@@ -98,7 +98,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             NUMBER + " INTEGER,\n" +
             DATE_VALIDITY + " TEXT,\n" +
             FIO_OWNER + " TEXT,\n" +
-            " FOREIGN KEY(" + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ")\n" +
+            " FOREIGN KEY(" + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ") ON DELETE CASCADE\n" +
             ");";
 
     public DBhelper(Context context) {

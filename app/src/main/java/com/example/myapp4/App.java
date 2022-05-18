@@ -42,6 +42,16 @@ public class App extends Application {
         readData();
     }
 
+    public static Car getCarForID(int id){
+        int pos = 0;
+        for (int i = 0; i < listCars.size(); i++){
+            if(listCars.get(i).getId() == id){
+                pos = i;
+            }
+        }
+        return listCars.get(pos);
+    }
+
     private void setInitialData(){
         /*listCars.add(new Car ("Toyota", "Mark2"));
         listCars.add(new Car ("Nissan", "Levin"));

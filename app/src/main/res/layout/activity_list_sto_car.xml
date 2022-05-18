@@ -6,36 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".activity.List_sto_car_Activity">
 
+    <TextView
+        android:id="@+id/tvYear"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Год выпуска"
+        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvMileage" />
+
+    <TextView
+        android:id="@+id/tvYear2"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvYear"
+        app:layout_constraintTop_toBottomOf="@+id/tvMileage2" />
+
+    <TextView
+        android:id="@+id/tvGos"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Гос. номер"
+        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+
+    <TextView
+        android:id="@+id/tvGos2"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvGos"
+        app:layout_constraintTop_toBottomOf="@+id/tvYear2" />
+
+    <TextView
+        android:id="@+id/tvMark2"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvMark"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvModel2"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvModel"
+        app:layout_constraintTop_toBottomOf="@+id/tvMark2" />
+
+    <TextView
+        android:id="@+id/tvMileage"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Пробег"
+        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvModel" />
+
+    <TextView
+        android:id="@+id/tvMileage2"
+        android:layout_width="82dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvMileage"
+        app:layout_constraintTop_toBottomOf="@+id/tvModel2" />
+
     <ImageView
         android:id="@+id/ivCarLoc"
-        android:layout_width="216dp"
-        android:layout_height="172dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="72dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="127dp"
+        android:layout_height="127dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/car" />
 
     <TextView
-        android:id="@+id/markLoc"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvMark"
+        android:layout_width="82dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="53dp"
-        android:text="mark"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCarLoc" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Марка"
+        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/modelLoc"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvModel"
+        android:layout_width="82dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="18dp"
-        android:text="model"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/markLoc" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Модель"
+        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintTop_toBottomOf="@+id/tvMark" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="357dp"
+        android:layout_height="550dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
