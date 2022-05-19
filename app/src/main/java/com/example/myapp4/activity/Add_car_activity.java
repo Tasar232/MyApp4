@@ -10,32 +10,30 @@ import android.widget.EditText;
 import com.example.myapp4.App;
 import com.example.myapp4.R;
 
-public class AddCarActivity extends AppCompatActivity {
-    EditText edMark;
-    EditText edModel;
-    EditText edMil;
-    EditText edYear;
-    EditText edSer;
-    EditText edNum;
-    EditText edGosNum;
-    Button btAdd;
+public class Add_car_activity extends AppCompatActivity {
+    EditText edMark, edModel, edMil, edYear, edSer, edNum, edGosNum;
+    Button btAddCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.add_car_activity);
-        edMark = findViewById(R.id.tvMark);
-        edModel = findViewById(R.id.tvModel);
-        edMil = findViewById(R.id.tvMileage);
-        edYear = findViewById(R.id.tvYear);
-        edSer = findViewById(R.id.tvSerSTS);
-        edNum = findViewById(R.id.tvNumSTS);
-        edGosNum = findViewById(R.id.tvGosNum);
-        btAdd = findViewById(R.id.btAdd);
+        setContentView(R.layout.activity_add_car);
+
+        setAddCarButton();
+    }
+    private void setAddCarButton(){
+        edMark = findViewById(R.id.etMark);
+        edModel = findViewById(R.id.etModel);
+        edMil = findViewById(R.id.etMileage);
+        edYear = findViewById(R.id.etYear);
+        edSer = findViewById(R.id.etSerSTS);
+        edNum = findViewById(R.id.etNumSTS);
+        edGosNum = findViewById(R.id.etGosNum);
+        btAddCar = findViewById(R.id.btAddCar);
 
 
 
-        btAdd.setOnClickListener(new View.OnClickListener() {
+        btAddCar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
@@ -65,6 +63,7 @@ public class AddCarActivity extends AppCompatActivity {
                 final int mil = mileage;
                 final int yea = year;
                 final int num = number;
+
                 App.addCar(mark,
                         model,
                         mil,
@@ -77,8 +76,6 @@ public class AddCarActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
     }
+
 }

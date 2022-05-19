@@ -5,9 +5,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -15,69 +12,40 @@ import android.widget.PopupMenu;
 import com.example.myapp4.App;
 import com.example.myapp4.R;
 import com.example.myapp4.activity.models_and_adapters.AdapterCar;
-import com.example.myapp4.logic.OSAGO.PolicyOSAGO;
-import com.example.myapp4.logic.cars.Car;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOnClickListenerCar, AdapterCar.ItemOnLongClickListenerCar {
+public class List_car_Activity extends AppCompatActivity implements AdapterCar.ItemOnClickListenerCar, AdapterCar.ItemOnLongClickListenerCar {
     private AdapterCar adapter;
     private int mCurrentItemPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_car);
+        setOnClickFAB();
+    }
 
-        initializeAdapter();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        initializeAdapterCar();
+    }
 
-        FloatingActionButton fab = findViewById(R.id.floatingActionButton3);
+    private void setOnClickFAB(){
+        FloatingActionButton fab = findViewById(R.id.fabAddCar);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), AddCarActivity.class);
+                Intent intent = new Intent(view.getContext(), Add_car_activity.class);
                 startActivity(intent);
-                //
-                //App.readData();
-                //initializeAdapter();
-
-                //RecyclerView recyclerView = findViewById(R.id.list_cars);
-                //isChangingConfigurations();
-                //adapter.notifyDataSetChanged();
-                //recyclerView.notify();
-                //initializeAdapter();
-                //onRestart();
-                //onResume();
-                //adapter.updateData(App.getListCars());
             }
         });
-
     }
 
-    @Override
-    public void onRestart() {
-        super.onRestart();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        initializeAdapter();
-    }
-
-
-    private void initializeAdapter(){
+    private void initializeAdapterCar(){
         RecyclerView recyclerView = findViewById(R.id.list_cars);
-
         adapter = new AdapterCar(this, App.getListCars(), this, this);
-
         recyclerView.setAdapter(adapter);
-
-        //recyclerView.refreshDrawableState();
-        //recyclerView.notify();
-
     }
 
 
@@ -85,8 +53,8 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
     @Override
     public void onClickListenerRecyclerViewMore_Car(int position) {
         Intent intent = new Intent(this, List_sto_car_Activity.class);
-        int id = App.getListCars().get(position).getId();
-        intent.putExtra("id", id);
+        int id_car = App.getListCars().get(position).getId();
+        intent.putExtra("id_car", id_car);
         startActivity(intent);
     }
 
@@ -102,8 +70,7 @@ public class MainActivity extends AppCompatActivity implements AdapterCar.ItemOn
                     case R.id.deleteContext:
                         int id = App.getListCars().get(position).getId();
                         App.deleteCar(id);
-                        initializeAdapter();
-                        //onRestart();
+                        initializeAdapterCar();
                         break;
                 }
                 return false;

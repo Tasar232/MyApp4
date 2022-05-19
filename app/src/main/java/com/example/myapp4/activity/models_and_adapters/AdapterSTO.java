@@ -41,18 +41,21 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
     @Override
     public void onBindViewHolder(AdapterSTO.ViewHolder holder, int position) {
         CarSTO carSTO = stos.get(position);
-        holder.work.setText(carSTO.getTypeOfWork());
-        holder.price.setText(carSTO.getTotalPrice());
+        String price = String.valueOf(carSTO.getTotalPrice());
+        holder.price.setText(price);
         holder.date.setText(carSTO.getDate());
         switch (carSTO.getTypeOfWork()){
-            case "Расхлд":
+            case 1:
                 holder.imWork.setImageResource(R.drawable.ic_pas);
+                holder.work.setText("Расходники");
                 break;
-            case "Remont":
+            case 2:
                 holder.imWork.setImageResource(R.drawable.ic_rem);
+                holder.work.setText("Ремонт");
                 break;
-            case "Remontsam":
+            case 3:
                 holder.imWork.setImageResource(R.drawable.ic_srem);
+                holder.work.setText("Ремонт своими рукми");
                 break;
         }
 
@@ -75,6 +78,7 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
             work = itemView.findViewById(R.id.tvWork);
             price = itemView.findViewById(R.id.tvPrice);
             date = itemView.findViewById(R.id.tvDate);
+            imWork = itemView.findViewById(R.id.imWork);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

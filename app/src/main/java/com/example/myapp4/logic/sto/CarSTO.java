@@ -1,24 +1,26 @@
 package com.example.myapp4.logic.sto;
 
 public class CarSTO {
-    private int id;
+    private int id_sto;
     private String date;
     private String nameCompany;
-    private String typeOfWork;
-    private String text;
+    private int typeOfWork;
+    private String textDescription;
     private int totalPrice;
 
-    public CarSTO(String date, String nameCompany, String typeOfWork, String text, int totalPrice){
+    public CarSTO(int id_sto, int typeOfWork, String date, String nameCompany, String textDescription, int totalPrice){
+        this.id_sto = id_sto;
+        this.typeOfWork = typeOfWork;
         this.date = date;
         this.nameCompany = nameCompany;
-        this.typeOfWork = typeOfWork;
-        this.text = text;
+        this.textDescription = textDescription;
         this.totalPrice = totalPrice;
     }
 
+    public int getIdSTO(){return id_sto;}
     public String getDate(){return date;}
     public String getNameCompany(){return nameCompany;}
-    public String getTypeOfWork(){return typeOfWork;}
-    public String getText(){return text;}
+    public int getTypeOfWork(){return typeOfWork;}
+    public String getText(){return textDescription;}
     public int getTotalPrice(){return totalPrice;}
 }

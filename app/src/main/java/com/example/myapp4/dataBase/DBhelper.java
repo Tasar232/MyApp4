@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapp4.logic.cars.Car;
+import com.example.myapp4.logic.sto.CarSTO;
 
 import java.util.ArrayList;
 
@@ -139,7 +140,6 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursorCar = null;
         ArrayList<Car> listCar = new ArrayList<>();
-        //String GET_COUNT_CAR_QUERY = "SELECT COUNT(*) FROM " + TABLE_CAR;
 
         String GET_CAR_QUERY = "SELECT \n" +
                 ID_CAR + ",\n" +
@@ -157,24 +157,26 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             if (cursorCar.moveToFirst()){
 
                 do {
-                    int ID = cursorCar.getColumnIndex(ID_CAR);
-                    int Mark = cursorCar.getColumnIndex(MARK);
-                    int Model = cursorCar.getColumnIndex(MODEL);
-                    int Mileage = cursorCar.getColumnIndex(MILEAGE);
-                    int Year = cursorCar.getColumnIndex(YEAR);
-                    int SerSts = cursorCar.getColumnIndex(SERIES_STS);
-                    int NumSts = cursorCar.getColumnIndex(NUMBER_STS);
-                    int GosNum = cursorCar.getColumnIndex(GOS_NUMBER);
+                    int ID_column = cursorCar.getColumnIndex(ID_CAR);
+                    int Mark_column = cursorCar.getColumnIndex(MARK);
+                    int Model_column = cursorCar.getColumnIndex(MODEL);
+                    int Mileage_column = cursorCar.getColumnIndex(MILEAGE);
+                    int Year_column = cursorCar.getColumnIndex(YEAR);
+                    int SerSts_column = cursorCar.getColumnIndex(SERIES_STS);
+                    int NumSts_column = cursorCar.getColumnIndex(NUMBER_STS);
+                    int GosNum_column = cursorCar.getColumnIndex(GOS_NUMBER);
                     Car car = new Car(
-                            cursorCar.getInt(ID),
-                            cursorCar.getString(Mark),
-                            cursorCar.getString(Model),
-                            cursorCar.getInt(Mileage),
-                            cursorCar.getInt(Year),
-                            cursorCar.getString(SerSts),
-                            cursorCar.getInt(NumSts),
-                            cursorCar.getString(GosNum)
+                            cursorCar.getInt(ID_column),
+                            cursorCar.getString(Mark_column),
+                            cursorCar.getString(Model_column),
+                            cursorCar.getInt(Mileage_column),
+                            cursorCar.getInt(Year_column),
+                            cursorCar.getString(SerSts_column),
+                            cursorCar.getInt(NumSts_column),
+                            cursorCar.getString(GosNum_column)
                     );
+
+                    car.getListSto().addAll(getListSTO(cursorCar.getInt(ID_column)));
                     listCar.add(car);
                 }
                 while (cursorCar.moveToNext());
@@ -196,6 +198,57 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         return listCar;
     }
 
+    private ArrayList<CarSTO> getListSTO(int id_car){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorCarSTO = null;
+        ArrayList<CarSTO> list_sto = new ArrayList<>();
+        String GET_CAR_STO_QUERY = "SELECT \n" +
+                ID_STO + ",\n" +
+                ID_WORK + ",\n" +
+                DATE + ",\n" +
+                NAME_COMPANY + ",\n" +
+                TEXT_DESCRIPTION + ",\n" +
+                TOTAL_PRICE + "\n" +
+                "FROM " + TABLE_STO + "\n" +
+                "WHERE " + ID_CAR + " = " + id_car;
+        try {
+             cursorCarSTO = db.rawQuery(GET_CAR_STO_QUERY, null);
+             if(cursorCarSTO.moveToFirst()){
+                 do{
+                     int id_sto_column = cursorCarSTO.getColumnIndex(ID_STO);
+                     int id_work_column = cursorCarSTO.getColumnIndex(ID_WORK);
+                     int date_column = cursorCarSTO.getColumnIndex(DATE);
+                     int name_company_column = cursorCarSTO.getColumnIndex(NAME_COMPANY);
+                     int text_description_column = cursorCarSTO.getColumnIndex(TEXT_DESCRIPTION);
+                     int total_price_column = cursorCarSTO.getColumnIndex(TOTAL_PRICE);
+
+                     CarSTO carSTO = new CarSTO(
+                             cursorCarSTO.getInt(id_sto_column),
+                             cursorCarSTO.getInt(id_work_column),
+                             cursorCarSTO.getString(date_column),
+                             cursorCarSTO.getString(name_company_column),
+                             cursorCarSTO.getString(text_description_column),
+                             cursorCarSTO.getInt(total_price_column)
+                     );
+                     list_sto.add(carSTO);
+                 }
+                 while (cursorCarSTO.moveToNext());
+             }
+             else {
+                 //row 0
+             }
+        }
+        catch (Exception ex){
+
+        }
+        finally {
+            if (cursorCarSTO != null && !cursorCarSTO.isClosed()) {
+                cursorCarSTO.close();
+            }
+        }
+        return list_sto;
+    }
+
     @Override
     public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber) {
         SQLiteDatabase db = getWritableDatabase();
@@ -206,8 +259,12 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void addSTO() {
-
+    public void addSTO(int id_car, int id_work, String date, String name_company, String description, int price) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO " + TABLE_STO +
+                " (" + ID_CAR + ", " + ID_WORK + ", " + DATE + ", " + NAME_COMPANY + ", " + TEXT_DESCRIPTION + ", " + TOTAL_PRICE + ") " +
+                "VALUES (" + id_car + ", " + id_work + ", '" + date + "', '" + name_company + "', '" + description + "', " + price + ")"
+        );
     }
 
     @Override
@@ -241,16 +298,19 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void deleteCar(int id) {
+    public void deleteCar(int id_car) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("DELETE FROM " + TABLE_CAR + " \n" +
-                "WHERE " + ID_CAR + " = " + id
+                "WHERE " + ID_CAR + " = " + id_car
                 );
     }
 
     @Override
-    public void deleteSTO() {
-
+    public void deleteSTO(int id_sto) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_STO + " \n" +
+                "WHERE " + ID_STO + " = " + id_sto
+        );
     }
 
     @Override

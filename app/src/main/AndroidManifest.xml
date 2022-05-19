@@ -11,13 +11,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp4">
         <activity
-            android:name=".activity.AddCarActivity"
+            android:name=".activity.List_item_sto_car_Activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Add_sto_car_activity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.Add_car_activity"
             android:exported="false" />
         <activity
             android:name=".activity.List_sto_car_Activity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activity.List_car_Activity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.AddCarActivity">
+    tools:context=".activity.Add_car_activity">
 
     <EditText
-        android:id="@+id/tvMark"
+        android:id="@+id/etMark"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
@@ -17,37 +17,37 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/tvModel"
+        android:id="@+id/etModel"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="29dp"
         android:text="Model"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMark" />
+        app:layout_constraintTop_toBottomOf="@+id/etMark" />
 
     <EditText
-        android:id="@+id/tvMileage"
+        android:id="@+id/etMileage"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:text="999"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvModel" />
+        app:layout_constraintTop_toBottomOf="@+id/etModel" />
 
     <EditText
-        android:id="@+id/tvYear"
+        android:id="@+id/etYear"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="28dp"
         android:text="1997"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMileage" />
+        app:layout_constraintTop_toBottomOf="@+id/etMileage" />
 
     <EditText
-        android:id="@+id/tvSerSTS"
+        android:id="@+id/etSerSTS"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
@@ -55,30 +55,30 @@
         android:editable="true"
         android:text="AAAA"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+        app:layout_constraintTop_toBottomOf="@+id/etYear" />
 
     <EditText
-        android:id="@+id/tvNumSTS"
+        android:id="@+id/etNumSTS"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:text="999999"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSerSTS" />
+        app:layout_constraintTop_toBottomOf="@+id/etSerSTS" />
 
     <EditText
-        android:id="@+id/tvGosNum"
+        android:id="@+id/etGosNum"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:text="А111АА38"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNumSTS" />
+        app:layout_constraintTop_toBottomOf="@+id/etNumSTS" />
 
     <Button
-        android:id="@+id/btAdd"
+        android:id="@+id/btAddCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="39dp"

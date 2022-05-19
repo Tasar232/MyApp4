@@ -7,14 +7,14 @@
     tools:context=".activity.List_sto_car_Activity">
 
     <TextView
-        android:id="@+id/tvYear"
+        android:id="@+id/etYear"
         android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Год выпуска"
-        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvMileage" />
+        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintTop_toBottomOf="@+id/etMileage" />
 
     <TextView
         android:id="@+id/tvYear2"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvYear"
+        app:layout_constraintStart_toEndOf="@+id/etYear"
         app:layout_constraintTop_toBottomOf="@+id/tvMileage2" />
 
     <TextView
@@ -32,8 +32,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Гос. номер"
-        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvYear" />
+        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintTop_toBottomOf="@+id/etYear" />
 
     <TextView
         android:id="@+id/tvGos2"
@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvMark"
+        app:layout_constraintStart_toEndOf="@+id/etMark"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -59,18 +59,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvModel"
+        app:layout_constraintStart_toEndOf="@+id/etModel"
         app:layout_constraintTop_toBottomOf="@+id/tvMark2" />
 
     <TextView
-        android:id="@+id/tvMileage"
+        android:id="@+id/etMileage"
         android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Пробег"
-        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvModel" />
+        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintTop_toBottomOf="@+id/etModel" />
 
     <TextView
         android:id="@+id/tvMileage2"
@@ -78,48 +78,65 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvMileage"
+        app:layout_constraintStart_toEndOf="@+id/etMileage"
         app:layout_constraintTop_toBottomOf="@+id/tvModel2" />
 
     <ImageView
-        android:id="@+id/ivCarLoc"
+        android:id="@+id/ivCarSTO"
         android:layout_width="127dp"
         android:layout_height="127dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/car" />
+        tools:srcCompat="@drawable/ic_car" />
 
     <TextView
-        android:id="@+id/tvMark"
+        android:id="@+id/etMark"
         android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Марка"
-        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
+        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvModel"
+        android:id="@+id/etModel"
         android:layout_width="82dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Модель"
-        app:layout_constraintStart_toEndOf="@+id/ivCarLoc"
-        app:layout_constraintTop_toBottomOf="@+id/tvMark" />
+        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintTop_toBottomOf="@+id/etMark" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/list_sto"
         android:layout_width="357dp"
         android:layout_height="550dp"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="74dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGos" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddSTO"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

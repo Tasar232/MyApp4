@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_sto_car.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_sto_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_car.xml" value="0.14780701754385964" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_item_sto_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_sto_car.xml" value="0.25" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_main.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_main2.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/add_car_activity.xml" value="0.17552083333333332" />

@@ -6,6 +6,7 @@ import com.example.myapp4.dataBase.DBhelper;
 import com.example.myapp4.dataBase.Repository_data_car;
 import com.example.myapp4.logic.OSAGO.PolicyOSAGO;
 import com.example.myapp4.logic.cars.Car;
+import com.example.myapp4.logic.sto.CarSTO;
 
 import java.util.ArrayList;
 
@@ -21,15 +22,14 @@ public class App extends Application {
 
         db_car = new DBhelper(this);
         readData();
-        //Connect DB
-        //setInitialData();
     }
     public static ArrayList<Car> getListCars(){
         return listCars;
     }
 
     public static void readData(){
-        listCars = db_car.getData();
+        listCars.clear();
+        listCars.addAll(db_car.getData());
     }
 
     public static void addCar( String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber){
@@ -52,33 +52,20 @@ public class App extends Application {
         return listCars.get(pos);
     }
 
-    private void setInitialData(){
-        /*listCars.add(new Car ("Toyota", "Mark2"));
-        listCars.add(new Car ("Nissan", "Levin"));
-        listCars.add(new Car ("Toyota", "LandCruiser"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        listCars.add(new Car ("Mercedes", "E63MG"));
-        */
-        //listCars.get(0).getListPolicy().addPolicy(new PolicyOSAGO("salo", "nety", "Da", "segodny"));
+    public static ArrayList<CarSTO> getListStoCar(int id){
+        ArrayList<CarSTO> list_sto = getCarForID(id).getListSto();
+        return list_sto;
     }
+
+    public static void addSTO(int id_car, int id_work, String date, String name_company, String description, int price){
+        db_car.addSTO(id_car, id_work, date, name_company, description, price);
+        readData();
+    }
+
+    public static void deleteSTO(int id_sto){
+        db_car.deleteSTO(id_sto);
+        readData();
+    }
+
+
 }

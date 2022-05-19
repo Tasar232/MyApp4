@@ -35,5 +35,5 @@
         android:longClickable="false"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/car" />
+        app:srcCompat="@drawable/ic_car" />
 </androidx.constraintlayout.widget.ConstraintLayout>
