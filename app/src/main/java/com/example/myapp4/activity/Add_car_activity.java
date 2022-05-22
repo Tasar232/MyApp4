@@ -3,6 +3,7 @@ package com.example.myapp4.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,13 +23,13 @@ public class Add_car_activity extends AppCompatActivity {
         setAddCarButton();
     }
     private void setAddCarButton(){
-        edMark = findViewById(R.id.etMark);
-        edModel = findViewById(R.id.etModel);
-        edMil = findViewById(R.id.etMileage);
-        edYear = findViewById(R.id.etYear);
+        edMark = findViewById(R.id.etMarkAddCar);
+        edModel = findViewById(R.id.etModelAddCar);
+        edMil = findViewById(R.id.etMileageAddCar);
+        edYear = findViewById(R.id.etYearAddCar);
         edSer = findViewById(R.id.etSerSTS);
-        edNum = findViewById(R.id.etNumSTS);
-        edGosNum = findViewById(R.id.etGosNum);
+        edNum = findViewById(R.id.etNumSTSAddCar);
+        edGosNum = findViewById(R.id.etGosNumAddCar);
         btAddCar = findViewById(R.id.btAddCar);
 
 

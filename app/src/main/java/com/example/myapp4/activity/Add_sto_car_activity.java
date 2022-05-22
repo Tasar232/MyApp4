@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.MultiAutoCompleteTextView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
@@ -39,7 +41,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
         super.onStart();
         setSpinnerItem();
         setAddSTOCarButton();
-        setInitialDateTime();
+        //setInitialDateTime();
     }
 
     private void setSpinnerItem(){
@@ -50,19 +52,18 @@ public class Add_sto_car_activity extends AppCompatActivity {
                 "Ремонт своими рукми"
         };
 
-        spinner = findViewById(R.id.spinner);
+        spinner = findViewById(R.id.spinnerAddSTO);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemWork);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
     private void setAddSTOCarButton(){
-        date = findViewById(R.id.etDate);
-        company = findViewById(R.id.etCompany);
-        price = findViewById(R.id.etPrice);
-        descrip = findViewById(R.id.mtvDesc);
+        date = findViewById(R.id.etDateAddSto);
+        company = findViewById(R.id.etCompanyAddSto);
+        price = findViewById(R.id.etPriceAddSto);
+        descrip = findViewById(R.id.mtvDescAddSto);
         btAddSto = findViewById(R.id.btAddSTO);
-
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,30 +74,36 @@ public class Add_sto_car_activity extends AppCompatActivity {
         btAddSto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String sdate = date.getText().toString();
-                String scompany = company.getText().toString();
-                String sdescrip = descrip.getText().toString();
-                int iprice = 0;
-                try{
-                    iprice = Integer.parseInt(price.getText().toString());
-                }
-                catch(NumberFormatException e){
-                }
+                if (spinner.getSelectedItemPosition() == 0){
+                    Toast toast = Toast.makeText(Add_sto_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
+                    toast.show();
 
-                final int iiprice = iprice;
-                final int id_work = spinner.getSelectedItemPosition();
-                Intent intent = getIntent();
-                int id_car = intent.getIntExtra("id_car", 0);
-                App.addSTO(
-                        id_car,
-                        id_work,
-                        sdate,
-                        scompany,
-                        sdescrip,
-                        iiprice
-                );
-                App.readData();
-                finish();
+                }
+                else {
+                    String sdate = date.getText().toString();
+                    String scompany = company.getText().toString();
+                    String sdescrip = descrip.getText().toString();
+                    int iprice = 0;
+                    try {
+                        iprice = Integer.parseInt(price.getText().toString());
+                    } catch (NumberFormatException e) {
+                    }
+
+                    final int iiprice = iprice;
+                    final int id_work = spinner.getSelectedItemPosition();
+                    Intent intent = getIntent();
+                    int id_car = intent.getIntExtra("id_car", 0);
+                    App.addSTO(
+                            id_car,
+                            id_work,
+                            sdate,
+                            scompany,
+                            sdescrip,
+                            iiprice
+                    );
+                    App.readData();
+                    finish();
+                }
             }
         });
     }
@@ -113,7 +120,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
 
     // установка начальных даты и времени
     private void setInitialDateTime() {
-        date = findViewById(R.id.etDate);
+        date = findViewById(R.id.etDateAddSto);
         Date dateStr = dateAndTime.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String strDate = formatter.format(dateStr);

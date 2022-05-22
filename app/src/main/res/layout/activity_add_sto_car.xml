@@ -7,47 +7,47 @@
     tools:context=".activity.Add_sto_car_activity">
 
     <EditText
-        android:id="@+id/etDate"
-        android:layout_width="100dp"
+        android:id="@+id/etDateAddSto"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:editable="false"
         android:ems="10"
+        android:hint="Дата (дд.мм.ггг)"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Дата"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddSTO" />
 
     <EditText
-        android:id="@+id/etCompany"
+        android:id="@+id/etCompanyAddSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="Название компании"
         android:inputType="textPersonName"
         android:minHeight="48dp"
-        android:text="Название компании"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDate" />
+        app:layout_constraintTop_toBottomOf="@+id/etDateAddSto" />
 
     <EditText
-        android:id="@+id/etPrice"
+        android:id="@+id/etPriceAddSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:hint="Итоговая цена"
+        android:inputType="number"
         android:minHeight="48dp"
-        android:text="Итоговая цена"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompany" />
+        app:layout_constraintTop_toBottomOf="@+id/etCompanyAddSto" />
 
     <Spinner
-        android:id="@+id/spinner"
+        android:id="@+id/spinnerAddSTO"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -61,21 +61,21 @@
         android:id="@+id/btAddSTO"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="64dp"
         android:text="Добавить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <MultiAutoCompleteTextView
-        android:id="@+id/mtvDesc"
+        android:id="@+id/mtvDescAddSto"
         android:layout_width="288dp"
         android:layout_height="146dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:text="Описание"
+        android:layout_marginTop="16dp"
+        android:hint="Описание"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/etPriceAddSto" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

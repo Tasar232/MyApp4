@@ -1,18 +1,12 @@
 package com.example.myapp4.activity.models_and_adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.Uri;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import androidx.lifecycle.ViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp4.R;
@@ -48,6 +42,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
         Car car = cars.get(position);
         holder.markView.setText(car.getMark());
         holder.modelView.setText(car.getModel());
+        holder.gosView.setText(car.getGosNumber());
         holder.imCar.setImageResource(R.drawable.ic_car);
 
     }
@@ -59,7 +54,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
-        public TextView markView, modelView;
+        public TextView markView, modelView, gosView;
         public ImageView imCar;
 
         ItemOnClickListenerCar itemOnClickListener;
@@ -67,9 +62,10 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
 
         protected ViewHolder(View view, ItemOnClickListenerCar itemOnClickListener, ItemOnLongClickListenerCar itemOnLongClickListenerCar){
             super(view);
-            markView = view.findViewById(R.id.markLoc);
-            modelView = view.findViewById(R.id.modelLoc);
-            imCar = view.findViewById(R.id.iVCar);
+            markView = view.findViewById(R.id.tvMarkCarRV);
+            modelView = view.findViewById(R.id.tvModelCarRV);
+            gosView = view.findViewById(R.id.tvGosCarRVEdit);
+            imCar = view.findViewById(R.id.ivCarRV);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

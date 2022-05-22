@@ -43,7 +43,7 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
     }
 
     private void initializeAdapterCar(){
-        RecyclerView recyclerView = findViewById(R.id.list_cars);
+        RecyclerView recyclerView = findViewById(R.id.rvList_car);
         adapter = new AdapterCar(this, App.getListCars(), this, this);
         recyclerView.setAdapter(adapter);
     }

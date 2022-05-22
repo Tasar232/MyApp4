@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
-import com.example.myapp4.activity.models_and_adapters.AdapterCar;
 import com.example.myapp4.activity.models_and_adapters.AdapterSTO;
 import com.example.myapp4.logic.cars.Car;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,7 +26,6 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_sto_car);
-
     }
 
     @Override
@@ -43,9 +41,10 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentAdd = new Intent(view.getContext(), Add_sto_car_activity.class);
                 Intent intent = getIntent();
                 int id_car = intent.getIntExtra("id_car", 0);
+
+                Intent intentAdd = new Intent(view.getContext(), Add_sto_car_activity.class);
                 intentAdd.putExtra("id_car", id_car);
                 startActivity(intentAdd);
             }
@@ -53,11 +52,11 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     }
 
     private void initializeInfCar(){
-        mark = findViewById(R.id.tvMark2);
-        model = findViewById(R.id.tvModel2);
-        mileage = findViewById(R.id.tvMileage2);
-        year = findViewById(R.id.tvYear2);
-        gos = findViewById(R.id.tvGos2);
+        mark = findViewById(R.id.tvMarkInfCarEdit);
+        model = findViewById(R.id.tvModelInfCarEdit);
+        mileage = findViewById(R.id.tvMileageInfCarEdit);
+        year = findViewById(R.id.tvYearInfCarEdit);
+        gos = findViewById(R.id.tvGosInfCarEdit);
         imCar = findViewById(R.id.ivCarSTO);
 
         imCar.setImageResource(R.drawable.ic_car);
@@ -86,18 +85,21 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
         Intent intent = getIntent();
         int id_car =  intent.getIntExtra("id_car", 0);
 
-        RecyclerView recyclerView = findViewById(R.id.list_sto);
+        RecyclerView recyclerView = findViewById(R.id.rvList_sto);
         adapter = new AdapterSTO(this, App.getListStoCar(id_car), this, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onClickListenerRecyclerViewMore_STO(int position) {
-        //TODO
-        //Intent intent = new Intent(this, List_sto_car_Activity.class);
-        //int id = App.getListCars().get(position).getId();
-        //intent.putExtra("id", id);
-        //startActivity(intent);
+        Intent intent = getIntent();
+        int id_car = intent.getIntExtra("id_car", 0);
+        int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
+
+        Intent intentItemSto = new Intent(this, List_item_sto_car_Activity.class);
+        intentItemSto.putExtra("id_sto", id_sto);
+        intentItemSto.putExtra("id_car", id_car);
+        startActivity(intentItemSto);
     }
 
     @Override

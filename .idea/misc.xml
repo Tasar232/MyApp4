@@ -4,16 +4,22 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_item_sto_car.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_sto_car.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_car.xml" value="0.14780701754385964" />
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_item_sto_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_item_sto_car.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_sto_car.xml" value="0.25" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_main.xml" value="0.16145833333333334" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_main2.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/add_car_activity.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_cars.xml" value="0.1335711454617519" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_cars.xml" value="0.5" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_item_sto.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_sto.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/menu/context_recycler_menu.xml" value="0.22" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_app_my.xml" value="0.1" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_app_my_round.xml" value="0.1" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
       </map>
     </option>
   </component>

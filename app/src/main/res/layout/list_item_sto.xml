@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imWork"
+        android:id="@+id/imWorkRVItemSto"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="5dp"
@@ -18,17 +18,17 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvWork"
+        android:id="@+id/tvWorkRVItemSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:text="Вид работы"
-        app:layout_constraintStart_toEndOf="@+id/imWork"
+        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPrice"
+        android:id="@+id/tvPriceRVItemSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -36,8 +36,8 @@
         android:layout_marginBottom="16dp"
         android:text="Итоговая цена"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imWork"
-        app:layout_constraintTop_toBottomOf="@+id/tvWork" />
+        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVItemSto" />
 
     <TextView
         android:id="@+id/tvDate"

@@ -6,7 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.myapp4.logic.cars.Car;
-import com.example.myapp4.logic.sto.CarSTO;
+import com.example.myapp4.logic.sto.ItemStoCar;
+import com.example.myapp4.logic.sto.StoCar;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     //Item
     public static final String TABLE_ITEM = "ITEM";
     public static final String ID_ITEM = "ID_item";
+    public static final String CODE_ITEM = "Code_item";
     public static final String NAME_ITEM = "Name_item";
     public static final String COUNT_ITEM = "Count_item";
     public static final String PRICE_ITEM = "Price_item";
@@ -84,11 +86,10 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     private static final String CREATE_TABLE_ITEM = "CREATE TABLE " + TABLE_ITEM + " (\n" +
             ID_ITEM + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             ID_STO + " INTEGER,\n" +
-            ID_WORK + " INTEGER,\n" +
+            CODE_ITEM + " TEXT,\n" +
             NAME_ITEM + " TEXT,\n" +
             COUNT_ITEM + " INTEGER,\n" +
             PRICE_ITEM + " INTEGER,\n" +
-            " FOREIGN KEY(" + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + ") ON DELETE CASCADE,\n" +
             " FOREIGN KEY(" + ID_STO + ") REFERENCES " + TABLE_STO + "(" + ID_STO + ") ON DELETE CASCADE\n" +
             ");";
     private static final String CREATE_TABLE_OSAGO = "CREATE TABLE " + TABLE_OSAGO + " (\n" +
@@ -136,7 +137,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
 
 
     @Override
-    public ArrayList<Car> getData() {
+    public ArrayList<Car> getAllCarsData() {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursorCar = null;
         ArrayList<Car> listCar = new ArrayList<>();
@@ -198,10 +199,10 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         return listCar;
     }
 
-    private ArrayList<CarSTO> getListSTO(int id_car){
+    private ArrayList<StoCar> getListSTO(int id_car){
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursorCarSTO = null;
-        ArrayList<CarSTO> list_sto = new ArrayList<>();
+        ArrayList<StoCar> list_sto = new ArrayList<>();
         String GET_CAR_STO_QUERY = "SELECT \n" +
                 ID_STO + ",\n" +
                 ID_WORK + ",\n" +
@@ -222,7 +223,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                      int text_description_column = cursorCarSTO.getColumnIndex(TEXT_DESCRIPTION);
                      int total_price_column = cursorCarSTO.getColumnIndex(TOTAL_PRICE);
 
-                     CarSTO carSTO = new CarSTO(
+                     StoCar carSTO = new StoCar(
                              cursorCarSTO.getInt(id_sto_column),
                              cursorCarSTO.getInt(id_work_column),
                              cursorCarSTO.getString(date_column),
@@ -230,6 +231,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                              cursorCarSTO.getString(text_description_column),
                              cursorCarSTO.getInt(total_price_column)
                      );
+                     carSTO.getListItemSTO().addAll(getListItemSTO(cursorCarSTO.getInt(id_sto_column)));
                      list_sto.add(carSTO);
                  }
                  while (cursorCarSTO.moveToNext());
@@ -247,6 +249,58 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             }
         }
         return list_sto;
+    }
+
+    private ArrayList<ItemStoCar> getListItemSTO(int id_sto){
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorCarSTOItem = null;
+        ArrayList<ItemStoCar> list_item = new ArrayList<>();
+        String GET_CAR_STO_ITEM_QUERY = "SELECT \n" +
+                ID_ITEM + ",\n" +
+                CODE_ITEM + ",\n" +
+                NAME_ITEM + ",\n" +
+                COUNT_ITEM + ",\n" +
+                PRICE_ITEM + "\n" +
+                "FROM " + TABLE_ITEM + "\n" +
+                "WHERE " + ID_STO + " = " + id_sto;
+
+        try{
+            cursorCarSTOItem = db.rawQuery(GET_CAR_STO_ITEM_QUERY, null);
+            if(cursorCarSTOItem.moveToFirst()) {
+                do{
+                    int id_itemColumn = cursorCarSTOItem.getColumnIndex(ID_ITEM);
+                    int codeColumn = cursorCarSTOItem.getColumnIndex(CODE_ITEM);
+                    int nameColumn = cursorCarSTOItem.getColumnIndex(NAME_ITEM);
+                    int countColumn = cursorCarSTOItem.getColumnIndex(COUNT_ITEM);
+                    int priceColumn = cursorCarSTOItem.getColumnIndex(PRICE_ITEM);
+
+                    ItemStoCar itemStoCar = new ItemStoCar(
+                            cursorCarSTOItem.getInt(id_itemColumn),
+                            cursorCarSTOItem.getString(codeColumn),
+                            cursorCarSTOItem.getString(nameColumn),
+                            cursorCarSTOItem.getInt(countColumn),
+                            cursorCarSTOItem.getInt(priceColumn)
+                    );
+                    list_item.add(itemStoCar);
+
+                }
+                while (cursorCarSTOItem.moveToNext());
+            }
+            else {
+                // row 0
+            }
+        }
+        catch (Exception e){
+
+        }
+        finally {
+            if (cursorCarSTOItem != null && !cursorCarSTOItem.isClosed()) {
+                cursorCarSTOItem.close();
+            }
+        }
+
+
+        return list_item;
     }
 
     @Override
@@ -268,8 +322,12 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void addItem() {
-
+    public void addItem(int id_sto, String code, String name, int count, int price) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("INSERT INTO " + TABLE_ITEM +
+                " (" + ID_STO + ", " + CODE_ITEM + ", " + NAME_ITEM + ", " + COUNT_ITEM + ", " + PRICE_ITEM + ") " +
+                "VALUES (" + id_sto + ", '" + code + "', '" + name + "', " + count + ", " + price + ")"
+        );
     }
 
     @Override
@@ -314,12 +372,23 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void deleteItem() {
-
+    public void deleteItem(int id_item) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_ITEM + "\n" +
+                "WHERE " + ID_ITEM + " = " + id_item
+        );
     }
 
     @Override
     public void deletePolicy() {
 
+    }
+
+    @Override
+    public void addColumn(){
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("ALTER TABLE " + TABLE_ITEM +
+                " ADD COLUMN " + ID_WORK + ";"
+        );
     }
 }

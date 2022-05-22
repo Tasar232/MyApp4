@@ -7,24 +7,21 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp4.R;
-import com.example.myapp4.logic.cars.Car;
-import com.example.myapp4.logic.sto.CarSTO;
+import com.example.myapp4.logic.sto.StoCar;
 
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 
 public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
     private LayoutInflater inflater;
-    private ArrayList<CarSTO> stos;
+    private ArrayList<StoCar> stos;
 
     private AdapterSTO.ItemOnClickListenerSTO listener;
     private AdapterSTO.ItemOnLongClickListenerSTO longListener;
 
-    public AdapterSTO(Context context, ArrayList<CarSTO> stos, AdapterSTO.ItemOnClickListenerSTO listener, AdapterSTO.ItemOnLongClickListenerSTO longListener){
+    public AdapterSTO(Context context, ArrayList<StoCar> stos, AdapterSTO.ItemOnClickListenerSTO listener, AdapterSTO.ItemOnLongClickListenerSTO longListener){
         this.stos = stos;
         this.inflater = LayoutInflater.from(context);
 
@@ -40,7 +37,7 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
 
     @Override
     public void onBindViewHolder(AdapterSTO.ViewHolder holder, int position) {
-        CarSTO carSTO = stos.get(position);
+        StoCar carSTO = stos.get(position);
         String price = String.valueOf(carSTO.getTotalPrice());
         holder.price.setText(price);
         holder.date.setText(carSTO.getDate());
@@ -75,10 +72,10 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
 
         public ViewHolder(View itemView, AdapterSTO.ItemOnClickListenerSTO itemOnClickListener, AdapterSTO.ItemOnLongClickListenerSTO itemOnLongClickListener) {
             super(itemView);
-            work = itemView.findViewById(R.id.tvWork);
-            price = itemView.findViewById(R.id.tvPrice);
+            work = itemView.findViewById(R.id.tvWorkRVItemSto);
+            price = itemView.findViewById(R.id.tvPriceRVItemSto);
             date = itemView.findViewById(R.id.tvDate);
-            imWork = itemView.findViewById(R.id.imWork);
+            imWork = itemView.findViewById(R.id.imWorkRVItemSto);
 
             itemView.setOnClickListener(this);
             itemView.setOnLongClickListener(this);

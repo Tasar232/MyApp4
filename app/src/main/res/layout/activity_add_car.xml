@@ -7,83 +7,86 @@
     tools:context=".activity.Add_car_activity">
 
     <EditText
-        android:id="@+id/etMark"
+        android:id="@+id/etMarkAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="55dp"
-        android:text="Mark"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:hint="Mark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/etModel"
+        android:id="@+id/etModelAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="29dp"
-        android:text="Model"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Model"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMark" />
+        app:layout_constraintTop_toBottomOf="@+id/etMarkAddCar" />
 
     <EditText
-        android:id="@+id/etMileage"
+        android:id="@+id/etMileageAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="28dp"
-        android:text="999"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Пробег"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etModel" />
+        app:layout_constraintTop_toBottomOf="@+id/etModelAddCar" />
 
     <EditText
-        android:id="@+id/etYear"
+        android:id="@+id/etYearAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="28dp"
-        android:text="1997"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Год"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMileage" />
+        app:layout_constraintTop_toBottomOf="@+id/etMileageAddCar" />
 
     <EditText
         android:id="@+id/etSerSTS"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:editable="true"
-        android:text="AAAA"
+        android:hint="Серия СТС"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etYear" />
+        app:layout_constraintTop_toBottomOf="@+id/etYearAddCar" />
 
     <EditText
-        android:id="@+id/etNumSTS"
+        android:id="@+id/etNumSTSAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="20dp"
-        android:text="999999"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Номер СТС"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSerSTS" />
 
     <EditText
-        android:id="@+id/etGosNum"
+        android:id="@+id/etGosNumAddCar"
         android:layout_width="263dp"
         android:layout_height="48dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="20dp"
-        android:text="А111АА38"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Гос. номер"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNumSTS" />
+        app:layout_constraintTop_toBottomOf="@+id/etNumSTSAddCar" />
 
     <Button
         android:id="@+id/btAddCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
-        android:layout_marginBottom="62dp"
-        android:text="Add"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="64dp"
+        android:text="Добавить"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
