@@ -34,6 +34,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     public static final String NAME_COMPANY = "Name_company";
     public static final String TOTAL_PRICE = "Total_price";
     public static final String TEXT_DESCRIPTION = "Text_description";
+    public static final String MILEAGE_NOW = "Mileage_now";
 
     //Type work how table
     public static final String TABLE_TYPE_WORK = "TYPE_WORK";
@@ -77,6 +78,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             ID_CAR + " INTEGER,\n" +
             ID_WORK + " INTEGER,\n" +
             DATE + " TEXT,\n" +
+            MILEAGE_NOW + " INTEGER, \n" +
             NAME_COMPANY + " TEXT,\n" +
             TEXT_DESCRIPTION + " TEXT,\n" +
             TOTAL_PRICE + " INTEGER,\n" +
@@ -207,6 +209,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                 ID_STO + ",\n" +
                 ID_WORK + ",\n" +
                 DATE + ",\n" +
+                MILEAGE_NOW + ",\n" +
                 NAME_COMPANY + ",\n" +
                 TEXT_DESCRIPTION + ",\n" +
                 TOTAL_PRICE + "\n" +
@@ -219,6 +222,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                      int id_sto_column = cursorCarSTO.getColumnIndex(ID_STO);
                      int id_work_column = cursorCarSTO.getColumnIndex(ID_WORK);
                      int date_column = cursorCarSTO.getColumnIndex(DATE);
+                     int mileage_now_column = cursorCarSTO.getColumnIndex(MILEAGE_NOW);
                      int name_company_column = cursorCarSTO.getColumnIndex(NAME_COMPANY);
                      int text_description_column = cursorCarSTO.getColumnIndex(TEXT_DESCRIPTION);
                      int total_price_column = cursorCarSTO.getColumnIndex(TOTAL_PRICE);
@@ -227,6 +231,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                              cursorCarSTO.getInt(id_sto_column),
                              cursorCarSTO.getInt(id_work_column),
                              cursorCarSTO.getString(date_column),
+                             cursorCarSTO.getInt(mileage_now_column),
                              cursorCarSTO.getString(name_company_column),
                              cursorCarSTO.getString(text_description_column),
                              cursorCarSTO.getInt(total_price_column)
@@ -313,11 +318,11 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void addSTO(int id_car, int id_work, String date, String name_company, String description, int price) {
+    public void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description, int price) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO " + TABLE_STO +
-                " (" + ID_CAR + ", " + ID_WORK + ", " + DATE + ", " + NAME_COMPANY + ", " + TEXT_DESCRIPTION + ", " + TOTAL_PRICE + ") " +
-                "VALUES (" + id_car + ", " + id_work + ", '" + date + "', '" + name_company + "', '" + description + "', " + price + ")"
+                " (" + ID_CAR + ", " + ID_WORK + ", " + DATE + ", " + MILEAGE_NOW + ", " + NAME_COMPANY + ", " + TEXT_DESCRIPTION + ", " + TOTAL_PRICE + ") " +
+                "VALUES (" + id_car + ", " + id_work + ", '" + date + "', " + mileage_now + ", '" + name_company + "', '" + description + "', " + price + ")"
         );
     }
 
@@ -382,6 +387,37 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     @Override
     public void deletePolicy() {
 
+    }
+
+    @Override
+    public String getWorkString(int id_work) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorWorkStr = null;
+        String resultStrWork = "Не указано";
+        String GET_WORK_STRING_QUERY = "SELECT \n" +
+                TYPE_WORK + "\n" +
+                "FROM " + TABLE_TYPE_WORK + "\n" +
+                "WHERE " + ID_WORK + " = " + id_work;
+
+        try {
+            cursorWorkStr = db.rawQuery(GET_WORK_STRING_QUERY, null);
+            if(cursorWorkStr.moveToFirst()) {
+                do{
+                    int workStrColumn = cursorWorkStr.getColumnIndex(TYPE_WORK);
+                    resultStrWork = cursorWorkStr.getString(workStrColumn);
+                }
+                while (cursorWorkStr.moveToNext());
+            }
+        }
+        catch (Exception e){
+
+        }
+        finally {
+            if (cursorWorkStr != null && !cursorWorkStr.isClosed()) {
+                cursorWorkStr.close();
+            }
+        }
+        return resultStrWork;
     }
 
     @Override

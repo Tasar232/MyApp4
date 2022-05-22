@@ -24,7 +24,7 @@ import java.util.Date;
 
 public class Add_sto_car_activity extends AppCompatActivity {
     Spinner spinner;
-    EditText date, company, price;
+    EditText date, company, price, mileage_now;
     MultiAutoCompleteTextView descrip;
     Button btAddSto;
     Calendar dateAndTime=Calendar.getInstance();
@@ -63,6 +63,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
         company = findViewById(R.id.etCompanyAddSto);
         price = findViewById(R.id.etPriceAddSto);
         descrip = findViewById(R.id.mtvDescAddSto);
+        mileage_now = findViewById(R.id.etMileageNowAddSto);
         btAddSto = findViewById(R.id.btAddSTO);
 
         date.setOnClickListener(new View.OnClickListener() {
@@ -87,9 +88,21 @@ public class Add_sto_car_activity extends AppCompatActivity {
                     try {
                         iprice = Integer.parseInt(price.getText().toString());
                     } catch (NumberFormatException e) {
+                        Toast toast = Toast.makeText(Add_sto_car_activity.this, "Введите итоговую цену числом", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
+                    }
+                    int imileagenow = 0;
+                    try {
+                        imileagenow = Integer.parseInt(mileage_now.getText().toString());
+                    } catch (NumberFormatException e) {
+                        Toast toast = Toast.makeText(Add_sto_car_activity.this, "Введите текщий пробег числом", Toast.LENGTH_LONG);
+                        toast.show();
+                        return;
                     }
 
                     final int iiprice = iprice;
+                    final int iimileagenow = imileagenow;
                     final int id_work = spinner.getSelectedItemPosition();
                     Intent intent = getIntent();
                     int id_car = intent.getIntExtra("id_car", 0);
@@ -97,6 +110,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
                             id_car,
                             id_work,
                             sdate,
+                            iimileagenow,
                             scompany,
                             sdescrip,
                             iiprice

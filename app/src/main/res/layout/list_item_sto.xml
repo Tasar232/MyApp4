@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/imWorkRVItemSto"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
@@ -18,36 +18,60 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvWorkRVItemSto"
+        android:id="@+id/tvWorkRVSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:text="Вид работы"
         app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPriceRVItemSto"
+        android:id="@+id/tvPriceRVSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="16dp"
-        android:text="Итоговая цена"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:text="Итог. цена:"
         app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
-        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVItemSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVSto" />
 
     <TextView
-        android:id="@+id/tvDate"
+        android:id="@+id/tvDateTVSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
         android:text="Дата"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvmiliageNowRVSto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Пробег:"
+        app:layout_constraintEnd_toStartOf="@+id/tvmileadeNowRVStoEdit"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateTVSto" />
+
+    <TextView
+        android:id="@+id/tvmileadeNowRVStoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateTVSto" />
+
+    <TextView
+        android:id="@+id/tvPriceRVStoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceRVSto"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVSto" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ import com.example.myapp4.logic.sto.StoCar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class List_item_sto_car_Activity extends AppCompatActivity implements AdapterItemSTO.ItemOnClickListenerItemSTO, AdapterItemSTO.ItemOnLongClickListenerItemSTO{
-    TextView workInf, companyInf, priceInf, descripInf, dateInf;
+    TextView workInf, companyInf, priceInf, descripInf, dateInf, mileageNow;
     private AdapterItemSTO adapter;
 
     @Override
@@ -71,23 +71,13 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
         priceInf = findViewById(R.id.tvPriceInfStoEdit);
         descripInf = findViewById(R.id.tvDescriptionInfStoEdit);
         dateInf = findViewById(R.id.tvDateInfStoEdit);
+        mileageNow = findViewById(R.id.tvMileageNowInfStoEdit);
 
         Intent intent = getIntent();
         int id_car =  intent.getIntExtra("id_car", 0);
         int id_sto =  intent.getIntExtra("id_sto", 0);
         StoCar stoCar = App.getStoForIDcarAndIDsto(id_car, id_sto);
-
-        switch (stoCar.getTypeOfWork()){
-            case 1:
-                workInf.setText("Расходники");
-                break;
-            case 2:
-                workInf.setText("Ремонт");
-                break;
-            case 3:
-                workInf.setText("Ремонт своими руками");
-                break;
-        }
+        workInf.setText(App.getTypeWorkString(stoCar.getTypeOfWork()));
 
         companyInf.setText(stoCar.getNameCompany());
         descripInf.setText(stoCar.getText());
@@ -98,6 +88,13 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
         }
         else {
             priceInf.setText(String.valueOf(stoCar.getTotalPrice()));
+        }
+
+        if(stoCar.getMileageNow() == 0){
+            mileageNow.setText("Не указано");
+        }
+        else {
+            mileageNow.setText(String.valueOf(stoCar.getMileageNow()));
         }
     }
 

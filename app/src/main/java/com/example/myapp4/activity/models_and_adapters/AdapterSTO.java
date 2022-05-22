@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapp4.App;
 import com.example.myapp4.R;
 import com.example.myapp4.logic.sto.StoCar;
 
@@ -39,20 +40,21 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
     public void onBindViewHolder(AdapterSTO.ViewHolder holder, int position) {
         StoCar carSTO = stos.get(position);
         String price = String.valueOf(carSTO.getTotalPrice());
+        String mileage = String.valueOf(carSTO.getMileageNow());
+
         holder.price.setText(price);
         holder.date.setText(carSTO.getDate());
+        holder.mileage.setText(mileage);
+        holder.work.setText(App.getTypeWorkString(carSTO.getTypeOfWork()));
         switch (carSTO.getTypeOfWork()){
             case 1:
                 holder.imWork.setImageResource(R.drawable.ic_pas);
-                holder.work.setText("Расходники");
                 break;
             case 2:
                 holder.imWork.setImageResource(R.drawable.ic_rem);
-                holder.work.setText("Ремонт");
                 break;
             case 3:
                 holder.imWork.setImageResource(R.drawable.ic_srem);
-                holder.work.setText("Ремонт своими рукми");
                 break;
         }
 
@@ -64,7 +66,7 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
-        TextView work, price, date;
+        TextView work, price, date, mileage;
         ImageView imWork;
 
         AdapterSTO.ItemOnClickListenerSTO itemOnClickListener;
@@ -72,9 +74,10 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
 
         public ViewHolder(View itemView, AdapterSTO.ItemOnClickListenerSTO itemOnClickListener, AdapterSTO.ItemOnLongClickListenerSTO itemOnLongClickListener) {
             super(itemView);
-            work = itemView.findViewById(R.id.tvWorkRVItemSto);
-            price = itemView.findViewById(R.id.tvPriceRVItemSto);
-            date = itemView.findViewById(R.id.tvDate);
+            work = itemView.findViewById(R.id.tvWorkRVSto);
+            price = itemView.findViewById(R.id.tvPriceRVStoEdit);
+            date = itemView.findViewById(R.id.tvDateTVSto);
+            mileage = itemView.findViewById(R.id.tvmileadeNowRVStoEdit);
             imWork = itemView.findViewById(R.id.imWorkRVItemSto);
 
             itemView.setOnClickListener(this);

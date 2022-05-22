@@ -31,6 +31,10 @@ public class App extends Application {
         int i = 0;
     }
 
+    public static String getTypeWorkString(int id_work){
+        return db_car.getWorkString(id_work);
+    }
+
     public static ArrayList<Car> getListCars(){
         return listCars;
     }
@@ -93,8 +97,8 @@ public class App extends Application {
 
 
 
-    public static void addSTO(int id_car, int id_work, String date, String name_company, String description, int price){
-        db_car.addSTO(id_car, id_work, date, name_company, description, price);
+    public static void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description, int price){
+        db_car.addSTO(id_car, id_work, date, mileage_now, name_company, description, price);
         readData();
     }
 
