@@ -45,7 +45,7 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
         holder.price.setText(price);
         holder.date.setText(carSTO.getDate());
         holder.mileage.setText(mileage);
-        holder.work.setText(App.getTypeWorkString(carSTO.getTypeOfWork()));
+        holder.work.setText(App.getTypeWorkName(carSTO.getTypeOfWork()));
         switch (carSTO.getTypeOfWork()){
             case 1:
                 holder.imWork.setImageResource(R.drawable.ic_pas);

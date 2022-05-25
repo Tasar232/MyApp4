@@ -72,6 +72,12 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
                         App.deleteCar(id);
                         initializeAdapterCar();
                         break;
+                    case R.id.editContext:
+                        Intent intent = new Intent(getApplicationContext(), Edit_car_activity.class);
+                        int id_car = App.getListCars().get(position).getId();
+                        intent.putExtra("id_car", id_car);
+                        startActivity(intent);
+                        break;
                 }
                 return false;
             }

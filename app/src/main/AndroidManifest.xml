@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp4">
         <activity
+            android:name=".activity.Edit_car_activity"
+            android:exported="false" />
+        <activity
             android:name=".activity.Add_item_sto_car_activity"
             android:exported="false" />
         <activity

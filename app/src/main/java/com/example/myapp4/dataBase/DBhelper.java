@@ -32,14 +32,14 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     public static final String ID_STO = "ID_sto";
     public static final String DATE = "Date";
     public static final String NAME_COMPANY = "Name_company";
-    public static final String TOTAL_PRICE = "Total_price";
+    //public static final String TOTAL_PRICE = "Total_price";
     public static final String TEXT_DESCRIPTION = "Text_description";
     public static final String MILEAGE_NOW = "Mileage_now";
 
     //Type work how table
     public static final String TABLE_TYPE_WORK = "TYPE_WORK";
-    public static final String TYPE_WORK = "Type_work";
-    public static final String ID_WORK = "ID_work";
+    public static final String NAME_TYPE_WORK = "Type_work";
+    public static final String ID_TYPE_WORK = "ID_type_work";
 
     //Item
     public static final String TABLE_ITEM = "ITEM";
@@ -48,6 +48,12 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     public static final String NAME_ITEM = "Name_item";
     public static final String COUNT_ITEM = "Count_item";
     public static final String PRICE_ITEM = "Price_item";
+    public static final String PRICE_WORK = "Price_work";
+
+    //Type work how table
+    public static final String TABLE_TYPE_ITEM = "TYPE_ITEM";
+    public static final String NAME_TYPE_ITEM = "Type_item";
+    public static final String ID_TYPE_ITEM = "ID_type_item";
 
     //OSAGO
     public static final String TABLE_OSAGO = "OSAGO";
@@ -70,28 +76,33 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             GOS_NUMBER + " TEXT\n" +
             ");";
     private static final String CREATE_TABLE_TYPE_WORK = "CREATE TABLE " + TABLE_TYPE_WORK + " (\n" +
-            ID_WORK + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-            TYPE_WORK + " TEXT\n" +
+            ID_TYPE_WORK + " INTEGER PRIMARY KEY,\n" +
+            NAME_TYPE_WORK + " TEXT\n" +
+            ");";
+    private static final String CREATE_TABLE_TYPE_ITEM = "CREATE TABLE " + TABLE_TYPE_ITEM + " (\n" +
+            ID_TYPE_ITEM + " INTEGER PRIMARY KEY,\n" +
+            NAME_TYPE_ITEM + " TEXT\n" +
             ");";
     private static final String CREATE_TABLE_STO = "CREATE TABLE " + TABLE_STO + " (\n" +
             ID_STO + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             ID_CAR + " INTEGER,\n" +
-            ID_WORK + " INTEGER,\n" +
+            ID_TYPE_WORK + " INTEGER,\n" +
             DATE + " TEXT,\n" +
             MILEAGE_NOW + " INTEGER, \n" +
             NAME_COMPANY + " TEXT,\n" +
             TEXT_DESCRIPTION + " TEXT,\n" +
-            TOTAL_PRICE + " INTEGER,\n" +
             " FOREIGN KEY( " + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ") ON DELETE CASCADE,\n" +
-            " FOREIGN KEY( " + ID_WORK + ") REFERENCES " + TYPE_WORK + "(" + ID_WORK + ") ON DELETE CASCADE\n" +
+            " FOREIGN KEY( " + ID_TYPE_WORK + ") REFERENCES " + NAME_TYPE_WORK + "(" + ID_TYPE_WORK + ") ON DELETE CASCADE\n" +
             ");";
     private static final String CREATE_TABLE_ITEM = "CREATE TABLE " + TABLE_ITEM + " (\n" +
             ID_ITEM + " INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
             ID_STO + " INTEGER,\n" +
+            ID_TYPE_ITEM + " INTEGER,\n" +
             CODE_ITEM + " TEXT,\n" +
             NAME_ITEM + " TEXT,\n" +
             COUNT_ITEM + " INTEGER,\n" +
             PRICE_ITEM + " INTEGER,\n" +
+            PRICE_WORK + " INTEGER,\n" +
             " FOREIGN KEY(" + ID_STO + ") REFERENCES " + TABLE_STO + "(" + ID_STO + ") ON DELETE CASCADE\n" +
             ");";
     private static final String CREATE_TABLE_OSAGO = "CREATE TABLE " + TABLE_OSAGO + " (\n" +
@@ -115,19 +126,19 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         db.execSQL(CREATE_TABLE_TYPE_WORK);
         db.execSQL(CREATE_TABLE_STO);
         db.execSQL(CREATE_TABLE_ITEM);
+        db.execSQL(CREATE_TABLE_TYPE_ITEM);
         db.execSQL(CREATE_TABLE_OSAGO);
 
         db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
-                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
-                "VALUES (" + 1 + ", 'Расходники')"
+                " (" + ID_TYPE_WORK + ", "+ NAME_TYPE_WORK +") " +
+                "VALUES (" + 1 + ", 'Расходники'),\n" +
+                "(" + 2 + ", 'Ремонт'),\n" +
+                "(" + 3 + ", 'Ремонт своими рукми')\n"
         );
-        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
-                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
-                "VALUES (" + 2 + ", 'Ремонт')"
-        );
-        db.execSQL("INSERT INTO " + TABLE_TYPE_WORK +
-                " (" + ID_WORK + ", "+ TYPE_WORK +") " +
-                "VALUES (" + 3 + ", 'Ремонт своими рукми')"
+        db.execSQL("INSERT INTO " + TABLE_TYPE_ITEM +
+                " (" + ID_TYPE_ITEM+ ", "+ NAME_TYPE_ITEM +") " +
+                "VALUES (" + 1 + ", 'Запчасть'),\n" +
+                "(" + 2 + ", 'Работа')"
         );
 
     }
@@ -207,12 +218,11 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         ArrayList<StoCar> list_sto = new ArrayList<>();
         String GET_CAR_STO_QUERY = "SELECT \n" +
                 ID_STO + ",\n" +
-                ID_WORK + ",\n" +
+                ID_TYPE_WORK + ",\n" +
                 DATE + ",\n" +
                 MILEAGE_NOW + ",\n" +
                 NAME_COMPANY + ",\n" +
-                TEXT_DESCRIPTION + ",\n" +
-                TOTAL_PRICE + "\n" +
+                TEXT_DESCRIPTION + "\n" +
                 "FROM " + TABLE_STO + "\n" +
                 "WHERE " + ID_CAR + " = " + id_car;
         try {
@@ -220,12 +230,11 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
              if(cursorCarSTO.moveToFirst()){
                  do{
                      int id_sto_column = cursorCarSTO.getColumnIndex(ID_STO);
-                     int id_work_column = cursorCarSTO.getColumnIndex(ID_WORK);
+                     int id_work_column = cursorCarSTO.getColumnIndex(ID_TYPE_WORK);
                      int date_column = cursorCarSTO.getColumnIndex(DATE);
                      int mileage_now_column = cursorCarSTO.getColumnIndex(MILEAGE_NOW);
                      int name_company_column = cursorCarSTO.getColumnIndex(NAME_COMPANY);
                      int text_description_column = cursorCarSTO.getColumnIndex(TEXT_DESCRIPTION);
-                     int total_price_column = cursorCarSTO.getColumnIndex(TOTAL_PRICE);
 
                      StoCar carSTO = new StoCar(
                              cursorCarSTO.getInt(id_sto_column),
@@ -233,8 +242,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
                              cursorCarSTO.getString(date_column),
                              cursorCarSTO.getInt(mileage_now_column),
                              cursorCarSTO.getString(name_company_column),
-                             cursorCarSTO.getString(text_description_column),
-                             cursorCarSTO.getInt(total_price_column)
+                             cursorCarSTO.getString(text_description_column)
                      );
                      carSTO.getListItemSTO().addAll(getListItemSTO(cursorCarSTO.getInt(id_sto_column)));
                      list_sto.add(carSTO);
@@ -262,10 +270,12 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
         ArrayList<ItemStoCar> list_item = new ArrayList<>();
         String GET_CAR_STO_ITEM_QUERY = "SELECT \n" +
                 ID_ITEM + ",\n" +
+                ID_TYPE_ITEM + ",\n" +
                 CODE_ITEM + ",\n" +
                 NAME_ITEM + ",\n" +
                 COUNT_ITEM + ",\n" +
-                PRICE_ITEM + "\n" +
+                PRICE_ITEM + ",\n" +
+                PRICE_WORK + "\n" +
                 "FROM " + TABLE_ITEM + "\n" +
                 "WHERE " + ID_STO + " = " + id_sto;
 
@@ -274,17 +284,22 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             if(cursorCarSTOItem.moveToFirst()) {
                 do{
                     int id_itemColumn = cursorCarSTOItem.getColumnIndex(ID_ITEM);
+                    int id_typeWorkItemColumn = cursorCarSTOItem.getColumnIndex(ID_TYPE_ITEM);
                     int codeColumn = cursorCarSTOItem.getColumnIndex(CODE_ITEM);
                     int nameColumn = cursorCarSTOItem.getColumnIndex(NAME_ITEM);
                     int countColumn = cursorCarSTOItem.getColumnIndex(COUNT_ITEM);
-                    int priceColumn = cursorCarSTOItem.getColumnIndex(PRICE_ITEM);
+                    int priceItemColumn = cursorCarSTOItem.getColumnIndex(PRICE_ITEM);
+                    int priceWorkColumn = cursorCarSTOItem.getColumnIndex(PRICE_WORK);
+
 
                     ItemStoCar itemStoCar = new ItemStoCar(
                             cursorCarSTOItem.getInt(id_itemColumn),
+                            cursorCarSTOItem.getInt(id_typeWorkItemColumn),
                             cursorCarSTOItem.getString(codeColumn),
                             cursorCarSTOItem.getString(nameColumn),
                             cursorCarSTOItem.getInt(countColumn),
-                            cursorCarSTOItem.getInt(priceColumn)
+                            cursorCarSTOItem.getInt(priceItemColumn),
+                            cursorCarSTOItem.getInt(priceWorkColumn)
                     );
                     list_item.add(itemStoCar);
 
@@ -318,20 +333,20 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description, int price) {
+    public void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO " + TABLE_STO +
-                " (" + ID_CAR + ", " + ID_WORK + ", " + DATE + ", " + MILEAGE_NOW + ", " + NAME_COMPANY + ", " + TEXT_DESCRIPTION + ", " + TOTAL_PRICE + ") " +
-                "VALUES (" + id_car + ", " + id_work + ", '" + date + "', " + mileage_now + ", '" + name_company + "', '" + description + "', " + price + ")"
+                " (" + ID_CAR + ", " + ID_TYPE_WORK + ", " + DATE + ", " + MILEAGE_NOW + ", " + NAME_COMPANY + ", " + TEXT_DESCRIPTION + ") " +
+                "VALUES (" + id_car + ", " + id_work + ", '" + date + "', " + mileage_now + ", '" + name_company + "', '" + description + "')"
         );
     }
 
     @Override
-    public void addItem(int id_sto, String code, String name, int count, int price) {
+    public void addItem(int id_sto, int id_type_item, String code, String name, int count, int priceItem, int priceWork) {
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("INSERT INTO " + TABLE_ITEM +
-                " (" + ID_STO + ", " + CODE_ITEM + ", " + NAME_ITEM + ", " + COUNT_ITEM + ", " + PRICE_ITEM + ") " +
-                "VALUES (" + id_sto + ", '" + code + "', '" + name + "', " + count + ", " + price + ")"
+                " (" + ID_STO + ", " + ID_TYPE_ITEM + ", " + CODE_ITEM + ", " + NAME_ITEM + ", " + COUNT_ITEM + ", " + PRICE_ITEM + ", " + PRICE_WORK +") " +
+                "VALUES (" + id_sto + ", " + id_type_item + ", '" + code + "', '" + name + "', " + count + ", " + priceItem + ", " + priceWork + ")"
         );
     }
 
@@ -390,27 +405,20 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public String getWorkString(int id_work) {
+    public String getTypeWorkName(int id_type_name_work) {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursorWorkStr = null;
         String resultStrWork = "Не указано";
         String GET_WORK_STRING_QUERY = "SELECT \n" +
-                TYPE_WORK + "\n" +
+                NAME_TYPE_WORK + "\n" +
                 "FROM " + TABLE_TYPE_WORK + "\n" +
-                "WHERE " + ID_WORK + " = " + id_work;
+                "WHERE " + ID_TYPE_WORK + " = " + id_type_name_work;
 
         try {
             cursorWorkStr = db.rawQuery(GET_WORK_STRING_QUERY, null);
-            if(cursorWorkStr.moveToFirst()) {
-                do{
-                    int workStrColumn = cursorWorkStr.getColumnIndex(TYPE_WORK);
-                    resultStrWork = cursorWorkStr.getString(workStrColumn);
-                }
-                while (cursorWorkStr.moveToNext());
-            }
-        }
-        catch (Exception e){
-
+            cursorWorkStr.moveToFirst();
+            int workStrColumn = cursorWorkStr.getColumnIndex(NAME_TYPE_WORK);
+            resultStrWork = cursorWorkStr.getString(workStrColumn);
         }
         finally {
             if (cursorWorkStr != null && !cursorWorkStr.isClosed()) {
@@ -421,10 +429,88 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
+    public ArrayList<String> getAllTypeWorkName() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorAllTypeWork = null;
+        ArrayList<String> resultWork = new ArrayList<>();
+        String GET_WORK_STRING_QUERY = "SELECT \n" +
+                NAME_TYPE_WORK + "\n" +
+                "FROM " + TABLE_TYPE_WORK;
+
+        try {
+            cursorAllTypeWork = db.rawQuery(GET_WORK_STRING_QUERY, null);
+            if(cursorAllTypeWork.moveToFirst()) {
+                do{
+                    int workStrColumn = cursorAllTypeWork.getColumnIndex(NAME_TYPE_WORK);
+                    resultWork.add(cursorAllTypeWork.getString(workStrColumn));
+                }
+                while (cursorAllTypeWork.moveToNext());
+            }
+        }
+        finally {
+            if (cursorAllTypeWork != null && !cursorAllTypeWork.isClosed()) {
+                cursorAllTypeWork.close();
+            }
+        }
+        return resultWork;
+    }
+
+    @Override
+    public String getTypeItemName(int id_type_name_item) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorTypeItem = null;
+        String resultItem = "Не указано";
+        String GET_WORK_STRING_QUERY = "SELECT \n" +
+                NAME_TYPE_ITEM + "\n" +
+                "FROM " + TABLE_TYPE_ITEM+ "\n" +
+                "WHERE " + ID_TYPE_ITEM + " = " + id_type_name_item;
+
+        try {
+            cursorTypeItem = db.rawQuery(GET_WORK_STRING_QUERY, null);
+            cursorTypeItem.moveToFirst();
+            int workStrColumn = cursorTypeItem.getColumnIndex(NAME_TYPE_ITEM);
+            resultItem = cursorTypeItem.getString(workStrColumn);
+        }
+        finally {
+            if (cursorTypeItem != null && !cursorTypeItem.isClosed()) {
+                cursorTypeItem.close();
+            }
+        }
+        return resultItem;
+    }
+
+    @Override
+    public ArrayList<String> getAllTypeItemName() {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursorAllTypeItem = null;
+        ArrayList<String> resultArrItem = new ArrayList<>();
+        String GET_WORK_STRING_QUERY = "SELECT \n" +
+                NAME_TYPE_ITEM + "\n" +
+                "FROM " + TABLE_TYPE_ITEM;
+
+        try {
+            cursorAllTypeItem = db.rawQuery(GET_WORK_STRING_QUERY, null);
+            if(cursorAllTypeItem.moveToFirst()) {
+                do{
+                    int workStrColumn = cursorAllTypeItem.getColumnIndex(NAME_TYPE_ITEM);
+                    resultArrItem.add(cursorAllTypeItem.getString(workStrColumn));
+                }
+                while (cursorAllTypeItem.moveToNext());
+            }
+        }
+        finally {
+            if (cursorAllTypeItem != null && !cursorAllTypeItem.isClosed()) {
+                cursorAllTypeItem.close();
+            }
+        }
+        return resultArrItem;
+    }
+
+    @Override
     public void addColumn(){
         SQLiteDatabase db = getWritableDatabase();
         db.execSQL("ALTER TABLE " + TABLE_ITEM +
-                " ADD COLUMN " + ID_WORK + ";"
+                " ADD COLUMN " + ID_TYPE_WORK + ";"
         );
     }
 }

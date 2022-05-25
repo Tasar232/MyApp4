@@ -12,14 +12,14 @@ public class StoCar {
     private int totalPrice;
     private ArrayList<ItemStoCar> list_item;
 
-    public StoCar(int id_sto, int typeOfWork, String date, int mileage_now, String nameCompany, String textDescription, int totalPrice){
+    public StoCar(int id_sto, int typeOfWork, String date, int mileage_now, String nameCompany, String textDescription){
         this.id_sto = id_sto;
         this.typeOfWork = typeOfWork;
         this.date = date;
         this.mileage_now = mileage_now;
         this.nameCompany = nameCompany;
         this.textDescription = textDescription;
-        this.totalPrice = totalPrice;
+        this.totalPrice = 0;
         this.list_item = new ArrayList<>();
     }
 
@@ -29,7 +29,16 @@ public class StoCar {
     public String getNameCompany(){return nameCompany;}
     public int getTypeOfWork(){return typeOfWork;}
     public String getText(){return textDescription;}
-    public int getTotalPrice(){return totalPrice;}
+    public int getTotalPrice(){
+        int price = 0;
+        for (int i = 0; i < list_item.size(); i++){
+            price += (list_item.get(i).getPriceItem() + list_item.get(i).getPriceWork())* list_item.get(i).getCount();
+        }
+        return price;
+    }
+    public void addTotalPrice(){
+
+    }
 
     public ArrayList<ItemStoCar> getListItemSTO(){return list_item;}
     public ItemStoCar getItem(int index){return list_item.get(index);}

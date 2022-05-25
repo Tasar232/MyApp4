@@ -3,6 +3,8 @@ package com.example.myapp4.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -15,6 +17,7 @@ import com.example.myapp4.R;
 import com.example.myapp4.activity.models_and_adapters.AdapterItemSTO;
 import com.example.myapp4.activity.models_and_adapters.AdapterSTO;
 import com.example.myapp4.logic.cars.Car;
+import com.example.myapp4.logic.sto.ItemStoCar;
 import com.example.myapp4.logic.sto.StoCar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -77,7 +80,7 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
         int id_car =  intent.getIntExtra("id_car", 0);
         int id_sto =  intent.getIntExtra("id_sto", 0);
         StoCar stoCar = App.getStoForIDcarAndIDsto(id_car, id_sto);
-        workInf.setText(App.getTypeWorkString(stoCar.getTypeOfWork()));
+        workInf.setText(App.getTypeWorkName(stoCar.getTypeOfWork()));
 
         companyInf.setText(stoCar.getNameCompany());
         descripInf.setText(stoCar.getText());
@@ -100,11 +103,40 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
 
     @Override
     public void onClickListenerRecyclerViewMore_Item_STO(int position) {
-        //TODO
-        //Intent intent = new Intent(this, List_sto_car_Activity.class);
-        //int id = App.getListCars().get(position).getId();
-        //intent.putExtra("id", id);
-        //startActivity(intent);
+        String dialogStr = "";
+        String dialogTill = "";
+        Intent intent = getIntent();
+        int id_car = intent.getIntExtra("id_item", 0);
+        int id_sto = intent.getIntExtra("id_sto", 0);
+        ItemStoCar itemStoCar = App.getListItemStoCar(id_car, id_sto).get(position);
+        switch (itemStoCar.getId_type_work()){
+            case 1:
+                dialogTill = " о детале";
+                dialogStr = "Название: " + itemStoCar.getName() + "\n" +
+                        "Код детали: " + itemStoCar.getCodeItem() + "\n" +
+                        "Количество: " + itemStoCar.getCount() + "\n" +
+                        "Цена детали: " + itemStoCar.getPriceItem() + "\n" +
+                        "Цена работы: " + itemStoCar.getPriceWork();
+                break;
+            case 2:
+                dialogTill = " о работе";
+                dialogStr = "Название: " + itemStoCar.getName() + "\n" +
+                        "Количество: " + itemStoCar.getCount() + "\n" +
+                        "Цена работы: " + itemStoCar.getPriceWork();
+                break;
+        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(List_item_sto_car_Activity.this);
+        builder.setTitle("Подробнее" + dialogTill)
+                .setMessage(dialogStr)
+                .setCancelable(true)
+                .setNegativeButton("Ок",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 
     @Override
@@ -123,6 +155,7 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
                         int id_item = App.getListItemStoCar(id_car, id_sto).get(position).getId_item();
                         App.deleteItem(id_item);
                         initializeAdapterItemSTO();
+                        initializeInfSTO();
                         break;
                 }
                 return false;

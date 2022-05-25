@@ -11,10 +11,10 @@
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:hint="Название детали"
+        android:layout_marginTop="16dp"
+        android:hint="Название"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddItem" />
 
     <EditText
         android:id="@+id/etAddCodeItem"
@@ -38,15 +38,26 @@
         app:layout_constraintTop_toBottomOf="@+id/etAddCodeItem" />
 
     <EditText
-        android:id="@+id/etAddPriceItem"
+        android:id="@+id/etAddItemPriceItem"
         android:layout_width="263dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:hint="Цена"
+        android:hint="Цена детали (за ед.)"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddCountItem" />
+
+    <EditText
+        android:id="@+id/etAddItemPriceWork"
+        android:layout_width="263dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:hint="Цена работы (за ед.)"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddItemPriceItem" />
 
     <Button
         android:id="@+id/btAddItemSto"
@@ -57,5 +68,16 @@
         android:text="Добавть"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinnerAddItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

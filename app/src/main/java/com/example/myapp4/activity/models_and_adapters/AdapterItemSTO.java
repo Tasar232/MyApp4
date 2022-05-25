@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapp4.R;
 import com.example.myapp4.logic.sto.ItemStoCar;
-import com.example.myapp4.logic.sto.StoCar;
 
 import java.util.ArrayList;
 
@@ -41,9 +40,16 @@ public class AdapterItemSTO extends RecyclerView.Adapter<AdapterItemSTO.ViewHold
         ItemStoCar itemCarSTO = items.get(position);
         holder.tvName.setText(itemCarSTO.getName());
         holder.tvCount.setText(String.valueOf(itemCarSTO.getCount()));
-        holder.tvPrice.setText(String.valueOf(itemCarSTO.getPrice()));
-        holder.imShestr.setImageResource(R.drawable.ic_shestr);
-
+        int price = itemCarSTO.getPriceItem() + itemCarSTO.getPriceWork();
+        holder.tvPrice.setText(String.valueOf(price));
+        switch (itemCarSTO.getId_type_work()){
+            case 1:
+                holder.imShestr.setImageResource(R.drawable.ic_type_spare);
+                break;
+            case 2:
+                holder.imShestr.setImageResource(R.drawable.ic_type_work);
+                break;
+        }
     }
 
     @Override

@@ -31,9 +31,23 @@ public class App extends Application {
         int i = 0;
     }
 
-    public static String getTypeWorkString(int id_work){
-        return db_car.getWorkString(id_work);
+
+
+    public static String getTypeWorkName(int id_work){
+        return db_car.getTypeWorkName(id_work);
     }
+    public static ArrayList<String> getAllTypeWorkName(){
+        return db_car.getAllTypeWorkName();
+    }
+    public static String getTypeItemName(int id_type_item){
+        return db_car.getTypeItemName(id_type_item);
+    }
+    public static ArrayList<String> getAllTypeItemName(){
+        return db_car.getAllTypeItemName();
+    }
+
+
+
 
     public static ArrayList<Car> getListCars(){
         return listCars;
@@ -97,8 +111,8 @@ public class App extends Application {
 
 
 
-    public static void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description, int price){
-        db_car.addSTO(id_car, id_work, date, mileage_now, name_company, description, price);
+    public static void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description){
+        db_car.addSTO(id_car, id_work, date, mileage_now, name_company, description);
         readData();
     }
 
@@ -108,8 +122,8 @@ public class App extends Application {
     }
 
 
-    public static void addItem(int id_sto, String code, String name, int count, int price){
-        db_car.addItem(id_sto, code, name, count, price);
+    public static void addItem(int id_sto, int id_type_item, String code, String name, int count, int priceItem, int priceWork){
+        db_car.addItem(id_sto, id_type_item, code, name, count, priceItem, priceWork);
         readData();
     }
 

@@ -19,6 +19,7 @@ import com.example.myapp4.App;
 import com.example.myapp4.R;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -51,9 +52,10 @@ public class Add_sto_car_activity extends AppCompatActivity {
                 "Ремонт",
                 "Ремонт своими рукми"
         };
+        ArrayList<String> arrItemWork  = App.getAllTypeWorkName();
 
         spinner = findViewById(R.id.spinnerAddSTO);
-        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, itemWork);
+        ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrItemWork);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -61,7 +63,6 @@ public class Add_sto_car_activity extends AppCompatActivity {
     private void setAddSTOCarButton(){
         date = findViewById(R.id.etDateAddSto);
         company = findViewById(R.id.etCompanyAddSto);
-        price = findViewById(R.id.etPriceAddSto);
         descrip = findViewById(R.id.mtvDescAddSto);
         mileage_now = findViewById(R.id.etMileageNowAddSto);
         btAddSto = findViewById(R.id.btAddSTO);
@@ -84,14 +85,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
                     String sdate = date.getText().toString();
                     String scompany = company.getText().toString();
                     String sdescrip = descrip.getText().toString();
-                    int iprice = 0;
-                    try {
-                        iprice = Integer.parseInt(price.getText().toString());
-                    } catch (NumberFormatException e) {
-                        Toast toast = Toast.makeText(Add_sto_car_activity.this, "Введите итоговую цену числом", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }
+
                     int imileagenow = 0;
                     try {
                         imileagenow = Integer.parseInt(mileage_now.getText().toString());
@@ -101,7 +95,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
                         return;
                     }
 
-                    final int iiprice = iprice;
+
                     final int iimileagenow = imileagenow;
                     final int id_work = spinner.getSelectedItemPosition();
                     Intent intent = getIntent();
@@ -112,8 +106,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
                             sdate,
                             iimileagenow,
                             scompany,
-                            sdescrip,
-                            iiprice
+                            sdescrip
                     );
                     App.readData();
                     finish();

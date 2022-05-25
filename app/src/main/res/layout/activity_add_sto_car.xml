@@ -34,19 +34,6 @@
         app:layout_constraintTop_toBottomOf="@+id/etMileageNowAddSto" />
 
     <EditText
-        android:id="@+id/etPriceAddSto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Итоговая цена"
-        android:inputType="number"
-        android:minHeight="48dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyAddSto" />
-
-    <EditText
         android:id="@+id/etMileageNowAddSto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,7 +75,7 @@
         android:layout_marginTop="16dp"
         android:hint="Описание"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPriceAddSto" />
+        app:layout_constraintTop_toBottomOf="@+id/etCompanyAddSto" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
