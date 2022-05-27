@@ -109,31 +109,35 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
         btAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast toast;
+                int iid_type_work = spinner.getSelectedItemPosition()+1;
+                String toastStr = "детали";
+                if (iid_type_work != 1){
+                    toastStr = "работы";
+                }
 
                 String sname = name.getText().toString();
-                String scode = code.getText().toString();
-                int icount = 0;
-                try {
-                    icount = Integer.parseInt(count.getText().toString());
-                }
-                catch (NumberFormatException e){
-                    Toast toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите количество числом", Toast.LENGTH_LONG);
+                if (sname.equals("")){
+                    toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите название " + toastStr, Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
+                String scode = code.getText().toString();
+                if (scode.equals("")){
+                    scode = "Не указано";
+                }
+                int icount = 1;
+                try {
+                    icount = Integer.parseInt(count.getText().toString());
+                }
+                catch (NumberFormatException e){}
 
                 int ipriceWork = 0;
                 int ipriceItem = 0;
                 try {
                     ipriceWork = Integer.parseInt(priceWork.getText().toString());
                     ipriceItem = Integer.parseInt(priceItem.getText().toString());
-                } catch (NumberFormatException e) {
-                    Toast toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите цену числом", Toast.LENGTH_LONG);
-                    toast.show();
-                    return;
-                }
-
-                int iid_type_work = spinner.getSelectedItemPosition()+1;
+                } catch (NumberFormatException e) {}
 
                 final int iipriceWork = ipriceWork;
                 final int iipriceItem = ipriceItem;

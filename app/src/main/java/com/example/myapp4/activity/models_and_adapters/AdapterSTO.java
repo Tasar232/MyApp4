@@ -44,7 +44,12 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
 
         holder.price.setText(price);
         holder.date.setText(carSTO.getDate());
-        holder.mileage.setText(mileage);
+        if (carSTO.getMileageNow() == -1){
+            holder.mileage.setText("Не указано");
+        }
+        else {
+            holder.mileage.setText(mileage);
+        }
         holder.work.setText(App.getTypeWorkName(carSTO.getTypeOfWork()));
         switch (carSTO.getTypeOfWork()){
             case 1:

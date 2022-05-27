@@ -3,6 +3,8 @@ package com.example.myapp4.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -10,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
@@ -72,8 +75,29 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
                 int id_car = App.getListCars().get(position).getId();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
-                        App.deleteCar(id_car);
-                        initializeAdapterCar();
+                        String title = "Удаление!!!";
+                        String message = "Вы действительно хотите удалить машину?";
+                        String button1String = "Да";
+                        String button2String = "Отмена";
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(List_car_Activity.this);
+                        builder.setTitle(title);  // заголовок
+                        builder.setMessage(message); // сообщение
+                        builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                App.deleteCar(id_car);
+                                Toast.makeText(List_car_Activity.this, "Машина удалена!", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        });
+                        builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+                        builder.setCancelable(true);
+                        builder.create();
+                        builder.show();
                         break;
                     case R.id.editContext:
                         Intent intentEditCar = new Intent(getApplicationContext(), Edit_car_activity.class);

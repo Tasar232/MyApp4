@@ -6,6 +6,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
@@ -45,11 +48,33 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = getIntent();
-        int id_car =  intent.getIntExtra("id_car", 0);
+        int id_car =  intent.getIntExtra("id_car", -1);
         switch (item.getItemId()) {
             case R.id.deleteContext:
-                App.deleteCar(id_car);
-                finish();
+
+                String title = "Удаление!!!";
+                String message = "Вы действительно хотите удалить машину?";
+                String yesString = "Да";
+                String cancelString = "Отмена";
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(List_sto_car_Activity.this);
+                builder.setTitle(title);  // заголовок
+                builder.setMessage(message); // сообщение
+                builder.setPositiveButton(yesString, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        App.deleteCar(id_car);
+                        finish();
+                    }
+                });
+                builder.setNegativeButton(cancelString, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                    }
+                });
+                builder.setCancelable(true);
+                builder.create();
+                builder.show();
+
                 break;
             case R.id.editContext:
                 Intent intentEditCar = new Intent(getApplicationContext(), Edit_car_activity.class);
@@ -103,13 +128,13 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
 
         mark.setText(car.getMark());
         model.setText(car.getModel());
-        if(car.getMileageCar() == 0){
+        if(car.getMileageCar() == -1){
             mileage.setText("Не указано");
         }
         else {
             mileage.setText(String.valueOf(car.getMileageCar()));
         }
-        if(car.getYearCar() == 0){
+        if(car.getYearCar() == -1){
             year.setText("Не указано");
         }
         else {
@@ -119,17 +144,17 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     }
     private void initializeAdapterSTO(){
         Intent intent = getIntent();
-        int id_car =  intent.getIntExtra("id_car", 0);
+        int id_car =  intent.getIntExtra("id_car", -1);
 
         RecyclerView recyclerView = findViewById(R.id.rvList_sto);
-        adapter = new AdapterSTO(this, App.getListStoCar(id_car), this, this);
+        adapter = new AdapterSTO(this, App.getListStoCarForID(id_car), this, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
     public void onClickListenerRecyclerViewMore_STO(int position) {
         Intent intent = getIntent();
-        int id_car = intent.getIntExtra("id_car", 0);
+        int id_car = intent.getIntExtra("id_car", -1);
         int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
 
         Intent intentItemSto = new Intent(this, List_item_sto_car_Activity.class);
@@ -147,12 +172,34 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent = getIntent();
-                int id_car = intent.getIntExtra("id_car", 0);
+                int id_car = intent.getIntExtra("id_car", -1);
                 int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
-                        App.deleteSTO(id_sto);
-                        initializeAdapterSTO();
+                        String title = "Удаление!!!";
+                        String message = "Вы действительно хотите удалить СТО?";
+                        String button1String = "Да";
+                        String button2String = "Отмена";
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(List_sto_car_Activity.this);
+                        builder.setTitle(title);  // заголовок
+                        builder.setMessage(message); // сообщение
+                        builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                App.deleteSTO(id_sto);
+                                initializeAdapterSTO();
+                                Toast.makeText(List_sto_car_Activity.this, "СТО удалено!", Toast.LENGTH_LONG)
+                                        .show();
+                            }
+                        });
+                        builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+
+                            }
+                        });
+                        builder.setCancelable(true);
+                        builder.create();
+                        builder.show();
                         break;
                     case R.id.editContext:
                         Intent intentEditSto = new Intent(getApplicationContext(), Edit_sto_car_activity.class);

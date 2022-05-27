@@ -55,7 +55,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
         super.onStart();
         setSpinnerItem();
         setAddSTOCarButton();
-        //setInitialDateTime();
+        setInitialDateTime();
     }
 
     private void setSpinnerItem(){
@@ -85,24 +85,30 @@ public class Add_sto_car_activity extends AppCompatActivity {
         btAddSto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast toast;
                 if (spinner.getSelectedItemPosition() == 0){
-                    Toast toast = Toast.makeText(Add_sto_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
+                    toast = Toast.makeText(Add_sto_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
                     toast.show();
 
                 }
                 else {
                     String sdate = date.getText().toString();
+                    if (sdate.equals("")){
+                        setInitialDateTime();
+                        sdate = date.getText().toString();
+                    }
                     String scompany = company.getText().toString();
+                    if (scompany.equals("")){
+                        scompany = "Не указано";
+                    }
                     String sdescrip = descrip.getText().toString();
-
-                    int imileagenow = 0;
+                    if (sdescrip.equals("")){
+                        sdescrip = "Нет описания";
+                    }
+                    int imileagenow = -1;
                     try {
                         imileagenow = Integer.parseInt(mileage_now.getText().toString());
-                    } catch (NumberFormatException e) {
-                        Toast toast = Toast.makeText(Add_sto_car_activity.this, "Введите текщий пробег числом", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }
+                    } catch (NumberFormatException e) { }
 
 
                     final int iimileagenow = imileagenow;

@@ -52,7 +52,7 @@ public class App extends Application {
     public static ArrayList<Car> getListCars(){
         return listCars;
     }
-    public static ArrayList<StoCar> getListStoCar(int id_car){
+    public static ArrayList<StoCar> getListStoCarForID(int id_car){
         ArrayList<StoCar> list_sto = getCarForID(id_car).getListSto();
         return list_sto;
     }

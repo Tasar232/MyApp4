@@ -8,13 +8,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
 
 public class Add_car_activity extends AppCompatActivity {
-    EditText edMark, edModel, edMil, edYear, edSer, edNum, edGosNum;
-    Button btAddCar;
+    private EditText edMark, edModel, edMil, edYear, edSer, edNum, edGosNum;
+    private Button btAddCar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,28 +53,47 @@ public class Add_car_activity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                Toast toast;
                 String mark = edMark.getText().toString();
+                if (mark.equals("")){
+                    toast = Toast.makeText(Add_car_activity.this, "Введите марку автомобиля", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
                 String model = edModel.getText().toString();
-                int mileage = 0;
-                try{
+                if (model.equals("")){
+                    toast = Toast.makeText(Add_car_activity.this, "Введите модель автомобиля", Toast.LENGTH_LONG);
+                    toast.show();
+                    return;
+                }
+                int mileage = -1;
+                try {
                     mileage = Integer.parseInt(edMil.getText().toString());
                 }
-                catch(NumberFormatException e){
+                catch (NumberFormatException e){
                 }
-                int year = 0;
+                int year = -1;
                 try {
                     year = Integer.parseInt(edYear.getText().toString());
                 }
                 catch (NumberFormatException e){
                 }
+
                 String serial = edSer.getText().toString();
-                int number = 0;
+                if (serial.equals("")){
+                    serial = "Не указано";
+                }
+                int number = -1;
                 try {
                     number = Integer.parseInt(edNum.getText().toString());
                 }
                 catch (NumberFormatException e){
                 }
+
                 String gos = edGosNum.getText().toString();
+                if (gos.equals("")){
+                    gos = "Не указано";
+                }
 
                 final int mil = mileage;
                 final int yea = year;

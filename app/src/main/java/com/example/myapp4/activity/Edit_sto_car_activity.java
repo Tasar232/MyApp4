@@ -102,17 +102,22 @@ public class Edit_sto_car_activity extends AppCompatActivity {
                 }
                 else {
                     String sdate = date.getText().toString();
+                    if (sdate.equals("")){
+                        setInitialDateTime();
+                        sdate = date.getText().toString();
+                    }
                     String scompany = company.getText().toString();
+                    if (scompany.equals("")){
+                        scompany = "Не указано";
+                    }
                     String sdescrip = descrip.getText().toString();
-
-                    int imileagenow = 0;
+                    if (sdescrip.equals("")){
+                        sdescrip = "Нет описания";
+                    }
+                    int imileagenow = -1;
                     try {
                         imileagenow = Integer.parseInt(mileage_now.getText().toString());
-                    } catch (NumberFormatException e) {
-                        Toast toast = Toast.makeText(Edit_sto_car_activity.this, "Введите текщий пробег числом", Toast.LENGTH_LONG);
-                        toast.show();
-                        return;
-                    }
+                    } catch (NumberFormatException e) { }
 
 
                     final int iimileagenow = imileagenow;
