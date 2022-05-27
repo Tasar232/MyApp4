@@ -7,6 +7,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -29,6 +31,39 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_item_sto_car);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_recycler_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        Intent intent = getIntent();
+        int id_sto =  intent.getIntExtra("id_sto", 0);
+        int id_car =  intent.getIntExtra("id_car", 0);
+        int id = item.getItemId();
+        switch(id){
+            case R.id.deleteContext:
+                App.deleteSTO(id_sto);
+                finish();
+                break;
+            case R.id.editContext:
+                Intent intentEditSto = new Intent(getApplicationContext(), Edit_sto_car_activity.class);
+                intentEditSto.putExtra("id_sto", id_sto);
+                intentEditSto.putExtra("id_car", id_car);
+                startActivity(intentEditSto);
+                break;
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -109,7 +144,7 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
         int id_car = intent.getIntExtra("id_item", 0);
         int id_sto = intent.getIntExtra("id_sto", 0);
         ItemStoCar itemStoCar = App.getListItemStoCar(id_car, id_sto).get(position);
-        switch (itemStoCar.getId_type_work()){
+        switch (itemStoCar.getId_type_item()){
             case 1:
                 dialogTill = " о детале";
                 dialogStr = "Название: " + itemStoCar.getName() + "\n" +
@@ -147,15 +182,22 @@ public class List_item_sto_car_Activity extends AppCompatActivity implements Ada
 
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent intent = getIntent();
+                int id_car = intent.getIntExtra("id_item", 0);
+                int id_sto = intent.getIntExtra("id_sto", 0);
+                int id_item = App.getListItemStoCar(id_car, id_sto).get(position).getId_item();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
-                        Intent intent = getIntent();
-                        int id_car = intent.getIntExtra("id_item", 0);
-                        int id_sto = intent.getIntExtra("id_sto", 0);
-                        int id_item = App.getListItemStoCar(id_car, id_sto).get(position).getId_item();
                         App.deleteItem(id_item);
                         initializeAdapterItemSTO();
                         initializeInfSTO();
+                        break;
+                    case R.id.editContext:
+                        Intent intentEditItem = new Intent(view.getContext(), Edit_item_sto_car_activity.class);
+                        intentEditItem.putExtra("id_car", id_car);
+                        intentEditItem.putExtra("id_sto", id_sto);
+                        intentEditItem.putExtra("id_item", id_item);
+                        startActivity(intentEditItem);
                         break;
                 }
                 return false;

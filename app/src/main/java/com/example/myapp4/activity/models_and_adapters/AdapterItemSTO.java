@@ -42,7 +42,7 @@ public class AdapterItemSTO extends RecyclerView.Adapter<AdapterItemSTO.ViewHold
         holder.tvCount.setText(String.valueOf(itemCarSTO.getCount()));
         int price = itemCarSTO.getPriceItem() + itemCarSTO.getPriceWork();
         holder.tvPrice.setText(String.valueOf(price));
-        switch (itemCarSTO.getId_type_work()){
+        switch (itemCarSTO.getId_type_item()){
             case 1:
                 holder.imShestr.setImageResource(R.drawable.ic_type_spare);
                 break;

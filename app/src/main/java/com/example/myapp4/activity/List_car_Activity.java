@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -30,6 +32,7 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
         super.onStart();
         initializeAdapterCar();
     }
+
 
     private void setOnClickFAB(){
         FloatingActionButton fab = findViewById(R.id.fabAddCar);
@@ -66,17 +69,16 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
 
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                int id_car = App.getListCars().get(position).getId();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
-                        int id = App.getListCars().get(position).getId();
-                        App.deleteCar(id);
+                        App.deleteCar(id_car);
                         initializeAdapterCar();
                         break;
                     case R.id.editContext:
-                        Intent intent = new Intent(getApplicationContext(), Edit_car_activity.class);
-                        int id_car = App.getListCars().get(position).getId();
-                        intent.putExtra("id_car", id_car);
-                        startActivity(intent);
+                        Intent intentEditCar = new Intent(getApplicationContext(), Edit_car_activity.class);
+                        intentEditCar.putExtra("id_car", id_car);
+                        startActivity(intentEditCar);
                         break;
                 }
                 return false;

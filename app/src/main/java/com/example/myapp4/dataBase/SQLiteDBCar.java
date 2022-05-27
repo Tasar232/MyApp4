@@ -11,7 +11,7 @@ import com.example.myapp4.logic.sto.StoCar;
 
 import java.util.ArrayList;
 
-public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
+public class SQLiteDBCar extends SQLiteOpenHelper implements Repository_data_car {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "carBD";
 
@@ -116,7 +116,7 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
             " FOREIGN KEY(" + ID_CAR + ") REFERENCES " + TABLE_CAR + "(" + ID_CAR + ") ON DELETE CASCADE\n" +
             ");";
 
-    public DBhelper(Context context) {
+    public SQLiteDBCar(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -356,18 +356,45 @@ public class DBhelper extends SQLiteOpenHelper implements Repository_data_car {
     }
 
     @Override
-    public void updateCar() {
-
+    public void updateCar(int id_car, String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_CAR + " SET\n" +
+                MARK + " = '" + mark + "',\n" +
+                MODEL + " = '" + model + "',\n" +
+                MILEAGE + " = " + mileage + ",\n" +
+                YEAR + " = " + year + ",\n" +
+                SERIES_STS + " = '" + seriesSTS + "',\n" +
+                NUMBER_STS + " = " + numberSTS + ",\n" +
+                GOS_NUMBER + " = '" + gosNumber + "'\n" +
+                "WHERE " + ID_CAR + " = " + id_car
+        );
     }
 
     @Override
-    public void updateSTO() {
-
+    public void updateSTO(int id_sto, int id_work, String date, int mileage_now, String name_company, String description) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_STO + " SET\n" +
+                 ID_TYPE_WORK + " = " + id_work + ",\n" +
+                 DATE + " = '" + date + "',\n" +
+                 MILEAGE_NOW + " = " + mileage_now + ",\n" +
+                 NAME_COMPANY + " = '" + name_company + "',\n" +
+                 TEXT_DESCRIPTION + " = '" + description + "'\n" +
+                "WHERE " + ID_STO + " = " + id_sto
+        );
     }
 
     @Override
-    public void updateItem() {
-
+    public void updateItem(int id_item, int id_type_item, String code, String name, int count, int priceItem, int priceWork) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_ITEM + " SET\n" +
+                ID_TYPE_ITEM + " = " + id_type_item + ",\n" +
+                CODE_ITEM + " = '" + code + "',\n" +
+                NAME_ITEM + " = '" + name + "',\n" +
+                COUNT_ITEM + " = " + count + ",\n" +
+                PRICE_ITEM + " = " + priceItem + ",\n" +
+                PRICE_WORK + " = " + priceWork + "\n" +
+                "WHERE " + ID_ITEM + " = " + id_item
+        );
     }
 
     @Override

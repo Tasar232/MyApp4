@@ -15,10 +15,11 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
+import com.example.myapp4.logic.sto.ItemStoCar;
 
 import java.util.ArrayList;
 
-public class Add_item_sto_car_activity extends AppCompatActivity {
+public class Edit_item_sto_car_activity extends AppCompatActivity {
     private EditText name, code, count, priceItem,  priceWork;
     private Button btAdd;
     private Spinner spinner;
@@ -32,13 +33,6 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-        setSpinnerItem();
-        setAddSTOCarButton();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
         switch(id){
@@ -46,6 +40,13 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setSpinnerItem();
+        setAddSTOCarButton();
     }
 
     private void setSpinnerItem(){
@@ -83,12 +84,25 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
     }
 
     private void setAddSTOCarButton(){
+        Intent intent = getIntent();
+        int id_car = intent.getIntExtra("id_item", 0);
+        int id_sto = intent.getIntExtra("id_sto", 0);
+        int id_item = intent.getIntExtra("id_item", 0);
+        ItemStoCar itemStoCar = App.getItemStoForIDcarAndIDstoAndIDItem(id_car, id_sto, id_item);
+
+        spinner.setSelection(itemStoCar.getId_type_item()-1);
         name = findViewById(R.id.etAddNameItem);
+        name.setText(itemStoCar.getName());
         code = findViewById(R.id.etAddCodeItem);
+        code.setText(itemStoCar.getCodeItem());
         priceItem = findViewById(R.id.etAddItemPriceItem);
+        priceItem.setText(String.valueOf(itemStoCar.getPriceItem()));
         priceWork = findViewById(R.id.etAddItemPriceWork);
+        priceWork.setText(String.valueOf(itemStoCar.getPriceWork()));
         count = findViewById(R.id.etAddCountItem);
+        count.setText(String.valueOf(itemStoCar.getCount()));
         btAdd = findViewById(R.id.btAddItemSto);
+        btAdd.setText("Сохранить");
 
 
 
@@ -103,7 +117,7 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                     icount = Integer.parseInt(count.getText().toString());
                 }
                 catch (NumberFormatException e){
-                    Toast toast = Toast.makeText(Add_item_sto_car_activity.this, "Введите количество числом", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите количество числом", Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
@@ -114,7 +128,7 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                     ipriceWork = Integer.parseInt(priceWork.getText().toString());
                     ipriceItem = Integer.parseInt(priceItem.getText().toString());
                 } catch (NumberFormatException e) {
-                    Toast toast = Toast.makeText(Add_item_sto_car_activity.this, "Введите цену числом", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите цену числом", Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
@@ -125,11 +139,8 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                 final int iipriceItem = ipriceItem;
                 final int iicount = icount;
 
-                Intent intent = getIntent();
-                int id_car = intent.getIntExtra("id_car", 0);
-                int id_sto = intent.getIntExtra("id_sto", 0);
-                App.addItem(
-                        id_sto,
+                App.updateItem(
+                        id_item,
                         iid_type_work,
                         scode,
                         sname,
@@ -137,10 +148,9 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                         iipriceItem,
                         iipriceWork
                 );
-                App.readData();
                 finish();
-
             }
         });
     }
+
 }

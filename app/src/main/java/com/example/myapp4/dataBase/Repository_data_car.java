@@ -14,9 +14,9 @@ public interface Repository_data_car {
     public void addItem(int id_sto, int id_type_item, String code, String name, int count, int priceItem, int priceWork);
     public void addPolicy();
 
-    public void updateCar();
-    public void updateSTO();
-    public void updateItem();
+    public void updateCar(int id_car, String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber);
+    public void updateSTO(int id_sto, int id_work, String date, int mileage_now, String name_company, String description);
+    public void updateItem(int id_item, int id_type_item, String code, String name, int count, int priceItem, int priceWork);
     public void updatePolicy();
 
     public void deleteCar(int id_car);

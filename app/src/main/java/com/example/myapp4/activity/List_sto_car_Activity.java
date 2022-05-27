@@ -1,10 +1,15 @@
 package com.example.myapp4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -26,7 +31,38 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_sto_car);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.context_recycler_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = getIntent();
+        int id_car =  intent.getIntExtra("id_car", 0);
+        switch (item.getItemId()) {
+            case R.id.deleteContext:
+                App.deleteCar(id_car);
+                finish();
+                break;
+            case R.id.editContext:
+                Intent intentEditCar = new Intent(getApplicationContext(), Edit_car_activity.class);
+                intentEditCar.putExtra("id_car", id_car);
+                startActivity(intentEditCar);
+                break;
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 
     @Override
     protected void onStart() {
@@ -110,14 +146,21 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
 
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
+                Intent intent = getIntent();
+                int id_car = intent.getIntExtra("id_car", 0);
+                int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
-                        Intent intent = getIntent();
-                        int id_car = intent.getIntExtra("id_car", 0);
-                        int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
                         App.deleteSTO(id_sto);
                         initializeAdapterSTO();
                         break;
+                    case R.id.editContext:
+                        Intent intentEditSto = new Intent(getApplicationContext(), Edit_sto_car_activity.class);
+                        intentEditSto.putExtra("id_sto", id_sto);
+                        intentEditSto.putExtra("id_car", id_car);
+                        startActivity(intentEditSto);
+                        break;
+
                 }
                 return false;
             }
@@ -126,4 +169,5 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
         popup.inflate(R.menu.context_recycler_menu);
         popup.show();
     }
+
 }
