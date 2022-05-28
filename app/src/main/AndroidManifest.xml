@@ -17,11 +17,6 @@
             android:name=".activity.Edit_sto_car_activity"
             android:exported="false" />
         <activity
-            android:name=".activity.MainActivity"
-            android:exported="false"
-            android:label="@string/title_activity_main"
-            android:theme="@style/Theme.MyApp4.NoActionBar" />
-        <activity
             android:name=".activity.Edit_car_activity"
             android:exported="false" />
         <activity

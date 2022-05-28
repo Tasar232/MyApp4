@@ -32,7 +32,7 @@ public class AdapterSTO extends RecyclerView.Adapter<AdapterSTO.ViewHolder>{
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.list_item_sto, parent, false);
+        View view = inflater.inflate(R.layout.list_rv_item_sto, parent, false);
         return new AdapterSTO.ViewHolder(view, listener, longListener);
     }
 
