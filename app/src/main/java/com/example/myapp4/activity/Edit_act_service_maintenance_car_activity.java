@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -18,26 +17,26 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
+import com.example.myapp4.logic.sto.ServiceMaintenanceCar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Add_sto_car_activity extends AppCompatActivity {
+public class Edit_act_service_maintenance_car_activity extends AppCompatActivity {
     private Spinner spinner;
-    private EditText date, company, price, mileage_now;
+    private EditText date, company, mileage_now;
     private MultiAutoCompleteTextView descrip;
-    private Button btAddSto;
-    private Calendar dateAndTime=Calendar.getInstance();
+    private Button btEditServiceMaintenance;
+    private Calendar dateAndTime = Calendar.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_sto_car);
+        setContentView(R.layout.activity_add_act_service_maintenance_car);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
     }
 
     @Override
@@ -54,8 +53,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         setSpinnerItem();
-        setAddSTOCarButton();
-        setInitialDateTime();
+        setAddServiceMaintenanceCarButton();
     }
 
     private void setSpinnerItem(){
@@ -63,18 +61,29 @@ public class Add_sto_car_activity extends AppCompatActivity {
         arrItemWork.add("Вид работы");
         arrItemWork.addAll(App.getAllTypeWorkName());
 
-        spinner = findViewById(R.id.spinnerAddSTO);
+        spinner = findViewById(R.id.spinnerAddActServiceMaintenance);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrItemWork);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
-    private void setAddSTOCarButton(){
-        date = findViewById(R.id.etDateAddSto);
-        company = findViewById(R.id.etCompanyAddSto);
-        descrip = findViewById(R.id.mtvDescAddSto);
-        mileage_now = findViewById(R.id.etMileageNowAddSto);
-        btAddSto = findViewById(R.id.btAddSTO);
+    private void setAddServiceMaintenanceCarButton(){
+        Intent intent = getIntent();
+        int id_car =  intent.getIntExtra("id_car", -1);
+        int id_act_service_maintenance =  intent.getIntExtra("id_act_service_maintenance", -1);
+        ServiceMaintenanceCar serviceMaintenanceCar = App.get_serviceMeintenance_for_IDcar_And_IDserviceMaintenance(id_car, id_act_service_maintenance);
+
+        spinner.setSelection(serviceMaintenanceCar.getIDTypeOfWork());
+        date = findViewById(R.id.etDateAddActServiceMaintenance);
+        date.setText(serviceMaintenanceCar.getDate());
+        company = findViewById(R.id.etCompanyAddActServiceMaintenance);
+        company.setText(serviceMaintenanceCar.getNameCompany());
+        descrip = findViewById(R.id.mtvDescAddActServiceMaintenance);
+        descrip.setText(serviceMaintenanceCar.getTextDescription());
+        mileage_now = findViewById(R.id.etMileageNowAddActServiceMaintenance);
+        mileage_now.setText(String.valueOf(serviceMaintenanceCar.getMileageNow()));
+        btEditServiceMaintenance = findViewById(R.id.btAddActServiceMaintenance);
+        btEditServiceMaintenance.setText("Сохранить");
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,12 +91,11 @@ public class Add_sto_car_activity extends AppCompatActivity {
                 setDate(view);
             }
         });
-        btAddSto.setOnClickListener(new View.OnClickListener() {
+        btEditServiceMaintenance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast;
                 if (spinner.getSelectedItemPosition() == 0){
-                    toast = Toast.makeText(Add_sto_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(Edit_act_service_maintenance_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
                     toast.show();
 
                 }
@@ -113,10 +121,8 @@ public class Add_sto_car_activity extends AppCompatActivity {
 
                     final int iimileagenow = imileagenow;
                     final int id_work = spinner.getSelectedItemPosition();
-                    Intent intent = getIntent();
-                    int id_car = intent.getIntExtra("id_car", 0);
-                    App.addSTO(
-                            id_car,
+                    App.updateServiceMaintenance(
+                            id_act_service_maintenance,
                             id_work,
                             sdate,
                             iimileagenow,
@@ -131,7 +137,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
 
     // отображаем диалоговое окно для выбора даты
     public void setDate(View v) {
-        new DatePickerDialog(Add_sto_car_activity.this, d,
+        new DatePickerDialog(Edit_act_service_maintenance_car_activity.this, d,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
@@ -141,7 +147,7 @@ public class Add_sto_car_activity extends AppCompatActivity {
 
     // установка начальных даты и времени
     private void setInitialDateTime() {
-        date = findViewById(R.id.etDateAddSto);
+        date = findViewById(R.id.etDateAddActServiceMaintenance);
         Date dateStr = dateAndTime.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String strDate = formatter.format(dateStr);

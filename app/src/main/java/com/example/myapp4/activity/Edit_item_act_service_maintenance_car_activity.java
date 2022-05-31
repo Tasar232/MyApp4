@@ -15,27 +15,21 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
+import com.example.myapp4.logic.sto.ItemServiceMaintenanceCar;
 
 import java.util.ArrayList;
 
-public class Add_item_sto_car_activity extends AppCompatActivity {
+public class Edit_item_act_service_maintenance_car_activity extends AppCompatActivity {
     private EditText name, code, count, priceItem,  priceWork;
-    private Button btAdd;
+    private Button btEdit;
     private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item_sto_car);
+        setContentView(R.layout.activity_add_item_act_service_maintenance_car);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setSpinnerItem();
-        setAddSTOCarButton();
     }
 
     @Override
@@ -46,6 +40,13 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setSpinnerItem();
+        setAddActServiceMaintenanceCarButton();
     }
 
     private void setSpinnerItem(){
@@ -63,7 +64,6 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
 
                 switch (spinner.getSelectedItemPosition()){
                     case 0:
-                        priceItem.setText("");
                         priceItem.setEnabled(true);
                         code.setEnabled(true);
                         break;
@@ -82,17 +82,34 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
         });
     }
 
-    private void setAddSTOCarButton(){
+    private void setAddActServiceMaintenanceCarButton(){
+        Intent intent = getIntent();
+        int id_car = intent.getIntExtra("id_car", -1);
+        int id_act_service_maintenance = intent.getIntExtra("id_act_service_maintenance", -1);
+        int id_item = intent.getIntExtra("id_item", -1);
+        ItemServiceMaintenanceCar itemServiceMaintenanceCar = App.get_workPartItem_for_IDcar_and_IDserviceMaintenance_and_IDItem(id_car, id_act_service_maintenance, id_item);
+
+        spinner.setSelection(itemServiceMaintenanceCar.getId_type_item()-1);
         name = findViewById(R.id.etAddNameItem);
+        name.setText(itemServiceMaintenanceCar.getName());
         code = findViewById(R.id.etAddCodeItem);
+        code.setText(itemServiceMaintenanceCar.getCodeItem());
+
         priceItem = findViewById(R.id.etAddItemPriceItem);
+        String pi = String.valueOf(itemServiceMaintenanceCar.getPriceItem());
+        priceItem.setText(pi);
         priceWork = findViewById(R.id.etAddItemPriceWork);
+        String pw = String.valueOf(itemServiceMaintenanceCar.getPriceWork());
+        priceWork.setText(pw);
+
         count = findViewById(R.id.etAddCountItem);
-        btAdd = findViewById(R.id.btAddItemSto);
+        count.setText(String.valueOf(itemServiceMaintenanceCar.getCount()));
+        btEdit = findViewById(R.id.btAddItemActServiceMaintenance);
+        btEdit.setText("Сохранить");
 
 
 
-        btAdd.setOnClickListener(new View.OnClickListener() {
+        btEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast toast;
@@ -104,7 +121,7 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
 
                 String sname = name.getText().toString();
                 if (sname.equals("")){
-                    toast = Toast.makeText(Add_item_sto_car_activity.this, "Введите название " + toastStr, Toast.LENGTH_LONG);
+                    toast = Toast.makeText(Edit_item_act_service_maintenance_car_activity.this, "Введите название " + toastStr, Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
@@ -125,17 +142,12 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                     ipriceItem = Integer.parseInt(priceItem.getText().toString());
                 } catch (NumberFormatException e) {}
 
-
-
                 final int iipriceWork = ipriceWork;
                 final int iipriceItem = ipriceItem;
                 final int iicount = icount;
 
-                Intent intent = getIntent();
-                int id_car = intent.getIntExtra("id_car", 0);
-                int id_sto = intent.getIntExtra("id_sto", 0);
-                App.addItem(
-                        id_sto,
+                App.updateItem(
+                        id_item,
                         iid_type_work,
                         scode,
                         sname,
@@ -143,10 +155,9 @@ public class Add_item_sto_car_activity extends AppCompatActivity {
                         iipriceItem,
                         iipriceWork
                 );
-                App.readData();
                 finish();
-
             }
         });
     }
+
 }

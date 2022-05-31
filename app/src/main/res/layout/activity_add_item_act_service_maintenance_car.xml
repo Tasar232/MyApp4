@@ -4,80 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Add_item_sto_car_activity">
+    tools:context=".activity.Add_item_act_service_maintenance_car_activity">
 
     <EditText
         android:id="@+id/etAddNameItem"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:hint="Название"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar2AddItemActServiceMaintenance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerAddItem" />
 
     <EditText
         android:id="@+id/etAddCodeItem"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Код детали"
+        app:layout_constraintEnd_toEndOf="@+id/etAddNameItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddNameItem" />
 
     <EditText
         android:id="@+id/etAddCountItem"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Количество"
         android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/etAddCodeItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddCodeItem" />
 
     <EditText
         android:id="@+id/etAddItemPriceItem"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:hint="Цена детали (за ед.)"
+        android:hint="Цена детали (за ед.) руб."
         android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/etAddCountItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddCountItem" />
 
     <EditText
         android:id="@+id/etAddItemPriceWork"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
-        android:hint="Цена работы (за ед.)"
+        android:hint="Цена работы (за ед.) руб."
         android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/etAddItemPriceItem"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etAddItemPriceItem" />
 
     <Button
-        android:id="@+id/btAddItemSto"
+        android:id="@+id/btAddItemActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
         android:text="Добавть"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/etAddItemPriceWork" />
 
     <Spinner
         android:id="@+id/spinnerAddItem"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar1AddItemActServiceMaintenance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/tvStar1AddItemActServiceMaintenance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/spinnerAddItem" />
+
+    <TextView
+        android:id="@+id/tvDescripStarAddItemActServiceMaintenance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="* - обязательные поля"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddItemPriceWork" />
+
+    <TextView
+        android:id="@+id/tvStar2AddItemActServiceMaintenance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etAddNameItem" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

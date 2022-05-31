@@ -1,27 +1,28 @@
 package com.example.myapp4.dataBase;
 
 import com.example.myapp4.logic.cars.Car;
+import com.example.myapp4.logic.sto.ItemServiceMaintenanceCar;
+import com.example.myapp4.logic.sto.ServiceMaintenanceCar;
 
-import java.net.PortUnreachableException;
 import java.util.ArrayList;
 
 public interface Repository_data_car {
 
     public ArrayList<Car> getAllCarsData();
 
-    public void addCar(String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber);
-    public void addSTO(int id_car, int id_work, String date, int mileage_now, String name_company, String description);
-    public void addItem(int id_sto, int id_type_item, String code, String name, int count, int priceItem, int priceWork);
+    public void addCar(Car car);
+    public void addServiceMaintenance(int id_car, ServiceMaintenanceCar serviceMaintenanceCar);
+    public void addSparePartAndWorkItem(int id_service_maintenance, ItemServiceMaintenanceCar itemServiceMaintenanceCar);
     public void addPolicy();
 
-    public void updateCar(int id_car, String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber);
-    public void updateSTO(int id_sto, int id_work, String date, int mileage_now, String name_company, String description);
-    public void updateItem(int id_item, int id_type_item, String code, String name, int count, int priceItem, int priceWork);
+    public void updateCar(Car car);
+    public void updateServiceMaintenance(ServiceMaintenanceCar serviceMaintenanceCar);
+    public void updateSparePartAndWorkItem(ItemServiceMaintenanceCar itemServiceMaintenanceCar);
     public void updatePolicy();
 
     public void deleteCar(int id_car);
-    public void deleteSTO(int id_sto);
-    public void deleteItem(int id_item);
+    public void deleteServiceMaintenance(int id_service_maintenance);
+    public void deleteSparePartAndWorkItem(int id_item);
     public void deletePolicy();
 
     public String getTypeWorkName(int id_type_name_work);

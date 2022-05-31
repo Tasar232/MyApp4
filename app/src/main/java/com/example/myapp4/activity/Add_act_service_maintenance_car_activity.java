@@ -17,17 +17,15 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
-import com.example.myapp4.logic.sto.ItemStoCar;
-import com.example.myapp4.logic.sto.StoCar;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Edit_sto_car_activity extends AppCompatActivity {
+public class Add_act_service_maintenance_car_activity extends AppCompatActivity {
     private Spinner spinner;
-    private EditText date, company, mileage_now;
+    private EditText date, company, price, mileage_now;
     private MultiAutoCompleteTextView descrip;
     private Button btAddSto;
     private Calendar dateAndTime=Calendar.getInstance();
@@ -35,9 +33,10 @@ public class Edit_sto_car_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_sto_car);
+        setContentView(R.layout.activity_add_act_service_maintenance_car);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
     }
 
     @Override
@@ -55,6 +54,7 @@ public class Edit_sto_car_activity extends AppCompatActivity {
         super.onStart();
         setSpinnerItem();
         setAddSTOCarButton();
+        setInitialDateTime();
     }
 
     private void setSpinnerItem(){
@@ -62,29 +62,18 @@ public class Edit_sto_car_activity extends AppCompatActivity {
         arrItemWork.add("Вид работы");
         arrItemWork.addAll(App.getAllTypeWorkName());
 
-        spinner = findViewById(R.id.spinnerAddSTO);
+        spinner = findViewById(R.id.spinnerAddActServiceMaintenance);
         ArrayAdapter<String> adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, arrItemWork);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
 
     private void setAddSTOCarButton(){
-        Intent intent = getIntent();
-        int id_car =  intent.getIntExtra("id_car", 0);
-        int id_sto =  intent.getIntExtra("id_sto", 0);
-        StoCar stoCar = App.getStoForIDcarAndIDsto(id_car, id_sto);
-
-        spinner.setSelection(stoCar.getTypeOfWork());
-        date = findViewById(R.id.etDateAddSto);
-        date.setText(stoCar.getDate());
-        company = findViewById(R.id.etCompanyAddSto);
-        company.setText(stoCar.getNameCompany());
-        descrip = findViewById(R.id.mtvDescAddSto);
-        descrip.setText(stoCar.getText());
-        mileage_now = findViewById(R.id.etMileageNowAddSto);
-        mileage_now.setText(String.valueOf(stoCar.getMileageNow()));
-        btAddSto = findViewById(R.id.btAddSTO);
-        btAddSto.setText("Сохранить");
+        date = findViewById(R.id.etDateAddActServiceMaintenance);
+        company = findViewById(R.id.etCompanyAddActServiceMaintenance);
+        descrip = findViewById(R.id.mtvDescAddActServiceMaintenance);
+        mileage_now = findViewById(R.id.etMileageNowAddActServiceMaintenance);
+        btAddSto = findViewById(R.id.btAddActServiceMaintenance);
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,8 +84,9 @@ public class Edit_sto_car_activity extends AppCompatActivity {
         btAddSto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast toast;
                 if (spinner.getSelectedItemPosition() == 0){
-                    Toast toast = Toast.makeText(Edit_sto_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
+                    toast = Toast.makeText(Add_act_service_maintenance_car_activity.this, "Выберете вид работы", Toast.LENGTH_LONG);
                     toast.show();
 
                 }
@@ -122,8 +112,10 @@ public class Edit_sto_car_activity extends AppCompatActivity {
 
                     final int iimileagenow = imileagenow;
                     final int id_work = spinner.getSelectedItemPosition();
-                    App.updateSTO(
-                            id_sto,
+                    Intent intent = getIntent();
+                    int id_car = intent.getIntExtra("id_car", 0);
+                    App.addServiceMaintenance(
+                            id_car,
                             id_work,
                             sdate,
                             iimileagenow,
@@ -138,7 +130,7 @@ public class Edit_sto_car_activity extends AppCompatActivity {
 
     // отображаем диалоговое окно для выбора даты
     public void setDate(View v) {
-        new DatePickerDialog(Edit_sto_car_activity.this, d,
+        new DatePickerDialog(Add_act_service_maintenance_car_activity.this, d,
                 dateAndTime.get(Calendar.YEAR),
                 dateAndTime.get(Calendar.MONTH),
                 dateAndTime.get(Calendar.DAY_OF_MONTH))
@@ -148,7 +140,7 @@ public class Edit_sto_car_activity extends AppCompatActivity {
 
     // установка начальных даты и времени
     private void setInitialDateTime() {
-        date = findViewById(R.id.etDateAddSto);
+        date = findViewById(R.id.etDateAddActServiceMaintenance);
         Date dateStr = dateAndTime.getTime();
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
         String strDate = formatter.format(dateStr);

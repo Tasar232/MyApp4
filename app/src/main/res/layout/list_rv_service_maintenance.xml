@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
-        android:id="@+id/imWorkRVItemSto"
+        android:id="@+id/imWorkRVItemActServiceMaintenance"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="5dp"
@@ -18,27 +18,29 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tvWorkRVSto"
+        android:id="@+id/tvWorkRVActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Вид работы"
-        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
+        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemActServiceMaintenance"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPriceRVSto"
+        android:id="@+id/tvPriceRVActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Итог. цена:"
-        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemSto"
-        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVSto" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemActServiceMaintenance"
+        app:layout_constraintTop_toBottomOf="@+id/tvmiliageNowRVActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvDateTVSto"
+        android:id="@+id/tvDateTVActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -48,31 +50,34 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvmiliageNowRVSto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Пробег:"
-        app:layout_constraintEnd_toStartOf="@+id/tvmileadeNowRVStoEdit"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateTVSto" />
-
-    <TextView
-        android:id="@+id/tvmileadeNowRVStoEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateTVSto" />
-
-    <TextView
-        android:id="@+id/tvPriceRVStoEdit"
+        android:id="@+id/tvmiliageNowRVActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvPriceRVSto"
-        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVSto" />
+        android:text="Пробег:"
+        app:layout_constraintStart_toEndOf="@+id/imWorkRVItemActServiceMaintenance"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkRVActServiceMaintenance" />
+
+    <TextView
+        android:id="@+id/tvmileadeNowRVActServiceMaintenanceEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvmiliageNowRVActServiceMaintenance"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateTVActServiceMaintenance" />
+
+    <TextView
+        android:id="@+id/tvPriceRVActServiceMaintenanceEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvPriceRVActServiceMaintenance"
+        app:layout_constraintTop_toTopOf="@+id/tvPriceRVActServiceMaintenance" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

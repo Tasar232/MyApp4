@@ -1,9 +1,6 @@
 package com.example.myapp4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.NavigationUI;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
@@ -21,19 +18,19 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
-import com.example.myapp4.activity.models_and_adapters.AdapterSTO;
+import com.example.myapp4.activity.models_and_adapters.AdapterActServiceMaintenance;
 import com.example.myapp4.logic.cars.Car;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class List_sto_car_Activity extends AppCompatActivity implements AdapterSTO.ItemOnClickListenerSTO, AdapterSTO.ItemOnLongClickListenerSTO {
+public class List_act_service_maintenance_car_Activity extends AppCompatActivity implements AdapterActServiceMaintenance.ItemOnClickListenerActServiceMaintenance, AdapterActServiceMaintenance.ItemOnLongClickListenerActServiceMaintenance {
     private TextView mark, model, mileage, year, gos;
     private ImageView imCar;
-    private AdapterSTO adapter;
+    private AdapterActServiceMaintenance adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_sto_car);
+        setContentView(R.layout.activity_list_act_service_maintenance_car);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
@@ -57,7 +54,7 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
                 String yesString = "Да";
                 String cancelString = "Отмена";
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(List_sto_car_Activity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(List_act_service_maintenance_car_Activity.this);
                 builder.setTitle(title);  // заголовок
                 builder.setMessage(message); // сообщение
                 builder.setPositiveButton(yesString, new DialogInterface.OnClickListener() {
@@ -93,19 +90,19 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
     protected void onStart() {
         super.onStart();
         initializeInfCar();
-        initializeAdapterSTO();
+        initializeAdapterServiceMaintenance();
         setOnClickFAB();
     }
 
     private void setOnClickFAB(){
-        FloatingActionButton fab = findViewById(R.id.fabAddSTO);
+        FloatingActionButton fab = findViewById(R.id.fabAddServiceMaintenance);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = getIntent();
                 int id_car = intent.getIntExtra("id_car", 0);
 
-                Intent intentAdd = new Intent(view.getContext(), Add_sto_car_activity.class);
+                Intent intentAdd = new Intent(view.getContext(), Add_act_service_maintenance_car_activity.class);
                 intentAdd.putExtra("id_car", id_car);
                 startActivity(intentAdd);
             }
@@ -118,7 +115,7 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
         mileage = findViewById(R.id.tvMileageInfCarEdit);
         year = findViewById(R.id.tvYearInfCarEdit);
         gos = findViewById(R.id.tvGosInfCarEdit);
-        imCar = findViewById(R.id.ivCarSTO);
+        imCar = findViewById(R.id.ivCarServiceMaintenance);
 
         imCar.setImageResource(R.drawable.ic_car);
 
@@ -142,29 +139,29 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
         }
         gos.setText(car.getGosNumber());
     }
-    private void initializeAdapterSTO(){
+    private void initializeAdapterServiceMaintenance(){
         Intent intent = getIntent();
         int id_car =  intent.getIntExtra("id_car", -1);
 
-        RecyclerView recyclerView = findViewById(R.id.rvList_sto);
-        adapter = new AdapterSTO(this, App.getListStoCarForID(id_car), this, this);
+        RecyclerView recyclerView = findViewById(R.id.rvList_service_maintenance);
+        adapter = new AdapterActServiceMaintenance(this, App.getListServiceMaintenanceCarForID(id_car), this, this);
         recyclerView.setAdapter(adapter);
     }
 
     @Override
-    public void onClickListenerRecyclerViewMore_STO(int position) {
+    public void onClickListenerRecyclerViewMore_ActServiceMaintenance(int position) {
         Intent intent = getIntent();
         int id_car = intent.getIntExtra("id_car", -1);
-        int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
+        int id_service_maintenance = App.getCarForID(id_car).getListServiceMaintenance().get(position).getIdServiceMaintenance();
 
-        Intent intentItemSto = new Intent(this, List_item_sto_car_Activity.class);
-        intentItemSto.putExtra("id_sto", id_sto);
+        Intent intentItemSto = new Intent(this, List_item_service_maintenance_car_Activity.class);
+        intentItemSto.putExtra("id_act_service_maintenance", id_service_maintenance);
         intentItemSto.putExtra("id_car", id_car);
         startActivity(intentItemSto);
     }
 
     @Override
-    public void onLongClickListenerRecyclerViewMore_STO(int position, View view) {
+    public void onLongClickListenerRecyclerViewMore_ActServiceMaintenance(int position, View view) {
         PopupMenu popup = new PopupMenu(this, view);
 
         popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
@@ -173,7 +170,7 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
             public boolean onMenuItemClick(MenuItem menuItem) {
                 Intent intent = getIntent();
                 int id_car = intent.getIntExtra("id_car", -1);
-                int id_sto = App.getCarForID(id_car).getListSto().get(position).getIdSTO();
+                int id_service_maintenance = App.getCarForID(id_car).getListServiceMaintenance().get(position).getIdServiceMaintenance();
                 switch (menuItem.getItemId()) {
                     case R.id.deleteContext:
                         String title = "Удаление!!!";
@@ -181,14 +178,14 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
                         String button1String = "Да";
                         String button2String = "Отмена";
 
-                        AlertDialog.Builder builder = new AlertDialog.Builder(List_sto_car_Activity.this);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(List_act_service_maintenance_car_Activity.this);
                         builder.setTitle(title);  // заголовок
                         builder.setMessage(message); // сообщение
                         builder.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                App.deleteSTO(id_sto);
-                                initializeAdapterSTO();
-                                Toast.makeText(List_sto_car_Activity.this, "СТО удалено!", Toast.LENGTH_LONG)
+                                App.deleteServiceMaintenance(id_service_maintenance);
+                                initializeAdapterServiceMaintenance();
+                                Toast.makeText(List_act_service_maintenance_car_Activity.this, "СТО удалено!", Toast.LENGTH_LONG)
                                         .show();
                             }
                         });
@@ -202,8 +199,8 @@ public class List_sto_car_Activity extends AppCompatActivity implements AdapterS
                         builder.show();
                         break;
                     case R.id.editContext:
-                        Intent intentEditSto = new Intent(getApplicationContext(), Edit_sto_car_activity.class);
-                        intentEditSto.putExtra("id_sto", id_sto);
+                        Intent intentEditSto = new Intent(getApplicationContext(), Edit_act_service_maintenance_car_activity.class);
+                        intentEditSto.putExtra("id_act_service_maintenance", id_service_maintenance);
                         intentEditSto.putExtra("id_car", id_car);
                         startActivity(intentEditSto);
                         break;

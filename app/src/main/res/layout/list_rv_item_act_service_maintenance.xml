@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/tvNameItemStoRVEdit"
+        android:id="@+id/tvNameItemActServiceMaintenanceRVEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -13,12 +13,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvCountItemStoRV"
-        app:layout_constraintStart_toEndOf="@+id/imShesterItemStoRV"
+        app:layout_constraintEnd_toStartOf="@+id/tvCountItemActServiceMaintenanceRV"
+        app:layout_constraintStart_toEndOf="@+id/imShesterItemActServiceMaintenanceRV"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvPriceItemStoRVEdit"
+        android:id="@+id/tvPriceItemActServiceMaintenanceRVEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -29,7 +29,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/ItvPriceItemStoRV"
+        android:id="@+id/ItvPriceItemActServiceMaintenanceRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -37,22 +37,22 @@
         android:layout_marginBottom="8dp"
         android:text="Цена:"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvPriceItemStoRVEdit"
+        app:layout_constraintEnd_toStartOf="@+id/tvPriceItemActServiceMaintenanceRVEdit"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvCountItemStoRVEdit"
+        android:id="@+id/tvCountItemActServiceMaintenanceRVEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ItvPriceItemStoRV"
+        app:layout_constraintEnd_toStartOf="@+id/ItvPriceItemActServiceMaintenanceRV"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvCountItemStoRV"
+        android:id="@+id/tvCountItemActServiceMaintenanceRV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -60,13 +60,13 @@
         android:layout_marginBottom="8dp"
         android:text="Кол."
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvCountItemStoRVEdit"
+        app:layout_constraintEnd_toStartOf="@+id/tvCountItemActServiceMaintenanceRVEdit"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imShesterItemStoRV"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:id="@+id/imShesterItemActServiceMaintenanceRV"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"

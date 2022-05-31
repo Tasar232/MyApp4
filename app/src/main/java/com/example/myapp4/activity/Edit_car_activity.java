@@ -15,7 +15,7 @@ import com.example.myapp4.R;
 import com.example.myapp4.logic.cars.Car;
 
 public class Edit_car_activity extends AppCompatActivity {
-    EditText edMark, edModel, edMil, edYear, edSer, edNum, edGosNum;
+    EditText edMark, edModel, edMil, edYear, reg_certificate, edGosNum;
     Button btSetCar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,14 +57,11 @@ public class Edit_car_activity extends AppCompatActivity {
         if (car.getYearCar() != -1) {
             edYear.setText(String.valueOf(car.getYearCar()));
         }
-        edSer = findViewById(R.id.etSerSTS);
-        if (!car.getSeriesSTS().equals("Не указано")) {
-            edSer.setText(car.getSeriesSTS());
+        reg_certificate = findViewById(R.id.etRegCertificateAddCar);
+        if (!car.getRegCertificate().equals("Не указано")) {
+            reg_certificate.setText(car.getRegCertificate());
         }
-        edNum = findViewById(R.id.etNumSTSAddCar);
-        if (car.getNumberSTS() != -1) {
-            edNum.setText(String.valueOf(car.getNumberSTS()));
-        }
+
         edGosNum = findViewById(R.id.etGosNumAddCar);
         if (!car.getGosNumber().equals("Не указано")) {
             edGosNum.setText(car.getGosNumber());
@@ -104,16 +101,11 @@ public class Edit_car_activity extends AppCompatActivity {
                 catch (NumberFormatException e){
                 }
 
-                String serial = edSer.getText().toString();
-                if (serial.equals("")){
-                    serial = "Не указано";
+                String regCertificate = reg_certificate.getText().toString();
+                if (regCertificate.equals("")){
+                    regCertificate = "Не указано";
                 }
-                int number = -1;
-                try {
-                    number = Integer.parseInt(edNum.getText().toString());
-                }
-                catch (NumberFormatException e){
-                }
+
 
                 String gos = edGosNum.getText().toString();
                 if (gos.equals("")){
@@ -122,7 +114,6 @@ public class Edit_car_activity extends AppCompatActivity {
 
                 final int mil = mileage;
                 final int yea = year;
-                final int num = number;
 
                 App.updateCar(
                         id_car,
@@ -130,8 +121,7 @@ public class Edit_car_activity extends AppCompatActivity {
                         model,
                         mil,
                         yea,
-                        serial,
-                        num,
+                        regCertificate,
                         gos
                 );
                 App.readData();

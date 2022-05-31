@@ -4,89 +4,119 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:contentDescription="Добавление машины"
     tools:context=".activity.Add_car_activity">
 
     <EditText
         android:id="@+id/etMarkAddCar"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:hint="Mark"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar1AddCar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/etModelAddCar"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:hint="Model"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar2AddCar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMarkAddCar" />
 
     <EditText
         android:id="@+id/etMileageAddCar"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
         android:hint="Пробег"
         android:inputType="number"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar2AddCar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etModelAddCar" />
 
     <EditText
         android:id="@+id/etYearAddCar"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Год"
         android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/etMileageAddCar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMileageAddCar" />
 
     <EditText
-        android:id="@+id/etSerSTS"
-        android:layout_width="263dp"
+        android:id="@+id/etRegCertificateAddCar"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:editable="true"
-        android:hint="Серия СТС"
+        android:hint="серия и номер СТС"
+        app:layout_constraintEnd_toEndOf="@+id/etYearAddCar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etYearAddCar" />
 
     <EditText
-        android:id="@+id/etNumSTSAddCar"
-        android:layout_width="263dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:hint="Номер СТС"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSerSTS" />
-
-    <EditText
         android:id="@+id/etGosNumAddCar"
-        android:layout_width="263dp"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Гос. номер"
+        app:layout_constraintEnd_toEndOf="@+id/etRegCertificateAddCar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNumSTSAddCar" />
+        app:layout_constraintTop_toBottomOf="@+id/etRegCertificateAddCar" />
 
     <Button
         android:id="@+id/btAddCar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
         android:text="Добавить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/etGosNumAddCar" />
+
+    <TextView
+        android:id="@+id/tvStar1AddCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etMarkAddCar" />
+
+    <TextView
+        android:id="@+id/tvStar2AddCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/etModelAddCar" />
+
+    <TextView
+        android:id="@+id/tvDescripStarAddCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="* - обязательные поля"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etGosNumAddCar" />
 </androidx.constraintlayout.widget.ConstraintLayout>

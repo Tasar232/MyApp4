@@ -1,6 +1,6 @@
 package com.example.myapp4.logic.sto;
 
-public class ItemStoCar {
+public class ItemServiceMaintenanceCar {
     private int id_item;
     private int id_type_item;
     private String code;
@@ -9,7 +9,7 @@ public class ItemStoCar {
     private int priceItem;
     private int priceWork;
 
-    public ItemStoCar(int id_item, int id_type_item, String code_item, String name, int count, int priceItem, int priceWork){
+    public ItemServiceMaintenanceCar(int id_item, int id_type_item, String code_item, String name, int count, int priceItem, int priceWork){
         this.id_item = id_item;
         this.id_type_item = id_type_item;
         this.code = code_item;
@@ -25,5 +25,5 @@ public class ItemStoCar {
     public String getName(){return name;}
     public int getCount(){return count;}
     public int getPriceWork(){return priceWork;}
-    public int getPriceItem(){return  priceItem;}
+    public int getPriceItem(){return priceItem;}
 }

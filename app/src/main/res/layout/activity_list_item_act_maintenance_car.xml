@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.List_item_sto_car_Activity">
+    tools:context=".activity.List_item_service_maintenance_car_Activity">
 
     <TextView
-        android:id="@+id/tvDateInfSto"
+        android:id="@+id/tvDateInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Дата:"
-        app:layout_constraintEnd_toStartOf="@+id/tvDateInfStoEdit"
-        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfSto" />
+        app:layout_constraintEnd_toStartOf="@+id/tvDateInfActServiceMaintenanceEdit"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvWorkInfSto"
+        android:id="@+id/tvWorkInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -27,92 +27,92 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvCompanyInfSto"
+        android:id="@+id/tvCompanyInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Компания:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWorkInfSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvPriceInfSto"
+        android:id="@+id/tvPriceInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Итоговая цена:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvDateInfStoEdit"
+        android:id="@+id/tvDateInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvWorkInfStoEdit"
+        android:id="@+id/tvWorkInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        app:layout_constraintStart_toEndOf="@+id/tvWorkInfSto"
+        app:layout_constraintStart_toEndOf="@+id/tvWorkInfActServiceMaintenance"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tvCompanyInfStoEdit"
+        android:id="@+id/tvCompanyInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvCompanyInfSto"
-        app:layout_constraintTop_toBottomOf="@+id/tvWorkInfSto" />
+        app:layout_constraintStart_toEndOf="@+id/tvCompanyInfActServiceMaintenance"
+        app:layout_constraintTop_toBottomOf="@+id/tvWorkInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvPriceInfStoEdit"
+        android:id="@+id/tvPriceInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toEndOf="@+id/tvPriceInfSto"
-        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfSto" />
+        app:layout_constraintStart_toEndOf="@+id/tvPriceInfActServiceMaintenance"
+        app:layout_constraintTop_toBottomOf="@+id/tvCompanyInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvDescriptionInfSto"
+        android:id="@+id/tvDescriptionInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Описание:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPriceInfSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvPriceInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvDescriptionInfStoEdit"
+        android:id="@+id/tvDescriptionInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionInfSto" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionInfActServiceMaintenance" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvList_item"
+        android:id="@+id/rvList_item_act_service_maintenance"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tvListItemTitul" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddItemSTO"
+        android:id="@+id/fabAddItemActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -125,32 +125,32 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tvListItemTitul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Список запчастей:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionInfStoEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDescriptionInfActServiceMaintenanceEdit" />
 
     <TextView
-        android:id="@+id/tvMileageNowInfSto"
+        android:id="@+id/tvMileageNowInfActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:text="Пробег:"
-        app:layout_constraintEnd_toStartOf="@+id/tvMileageNowInfStoEdit"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateInfSto" />
+        app:layout_constraintEnd_toStartOf="@+id/tvMileageNowInfActServiceMaintenanceEdit"
+        app:layout_constraintTop_toBottomOf="@+id/tvDateInfActServiceMaintenance" />
 
     <TextView
-        android:id="@+id/tvMileageNowInfStoEdit"
+        android:id="@+id/tvMileageNowInfActServiceMaintenanceEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDateInfStoEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDateInfActServiceMaintenanceEdit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,11 +15,10 @@ import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
-import com.example.myapp4.logic.sto.ItemStoCar;
 
 import java.util.ArrayList;
 
-public class Edit_item_sto_car_activity extends AppCompatActivity {
+public class Add_item_act_service_maintenance_car_activity extends AppCompatActivity {
     private EditText name, code, count, priceItem,  priceWork;
     private Button btAdd;
     private Spinner spinner;
@@ -27,9 +26,16 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_item_sto_car);
+        setContentView(R.layout.activity_add_item_act_service_maintenance_car);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        setSpinnerItem();
+        setAddSTOCarButton();
     }
 
     @Override
@@ -40,13 +46,6 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
                 finish();
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        setSpinnerItem();
-        setAddSTOCarButton();
     }
 
     private void setSpinnerItem(){
@@ -84,25 +83,12 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
     }
 
     private void setAddSTOCarButton(){
-        Intent intent = getIntent();
-        int id_car = intent.getIntExtra("id_item", 0);
-        int id_sto = intent.getIntExtra("id_sto", 0);
-        int id_item = intent.getIntExtra("id_item", 0);
-        ItemStoCar itemStoCar = App.getItemStoForIDcarAndIDstoAndIDItem(id_car, id_sto, id_item);
-
-        spinner.setSelection(itemStoCar.getId_type_item()-1);
         name = findViewById(R.id.etAddNameItem);
-        name.setText(itemStoCar.getName());
         code = findViewById(R.id.etAddCodeItem);
-        code.setText(itemStoCar.getCodeItem());
         priceItem = findViewById(R.id.etAddItemPriceItem);
-        priceItem.setText(String.valueOf(itemStoCar.getPriceItem()));
         priceWork = findViewById(R.id.etAddItemPriceWork);
-        priceWork.setText(String.valueOf(itemStoCar.getPriceWork()));
         count = findViewById(R.id.etAddCountItem);
-        count.setText(String.valueOf(itemStoCar.getCount()));
-        btAdd = findViewById(R.id.btAddItemSto);
-        btAdd.setText("Сохранить");
+        btAdd = findViewById(R.id.btAddItemActServiceMaintenance);
 
 
 
@@ -118,7 +104,7 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
 
                 String sname = name.getText().toString();
                 if (sname.equals("")){
-                    toast = Toast.makeText(Edit_item_sto_car_activity.this, "Введите название " + toastStr, Toast.LENGTH_LONG);
+                    toast = Toast.makeText(Add_item_act_service_maintenance_car_activity.this, "Введите название " + toastStr, Toast.LENGTH_LONG);
                     toast.show();
                     return;
                 }
@@ -133,18 +119,27 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
                 catch (NumberFormatException e){}
 
                 int ipriceWork = 0;
+                try{
+                    String str = priceWork.getText().toString();
+                    ipriceWork = Integer.parseInt(str);
+                } catch (NumberFormatException e){}
                 int ipriceItem = 0;
                 try {
-                    ipriceWork = Integer.parseInt(priceWork.getText().toString());
-                    ipriceItem = Integer.parseInt(priceItem.getText().toString());
+                    String str2 = priceItem.getText().toString();
+                    ipriceItem = Integer.parseInt(str2);
                 } catch (NumberFormatException e) {}
+
+
 
                 final int iipriceWork = ipriceWork;
                 final int iipriceItem = ipriceItem;
                 final int iicount = icount;
 
-                App.updateItem(
-                        id_item,
+                Intent intent = getIntent();
+                int id_car = intent.getIntExtra("id_car", 0);
+                int id_act_service_maintenance = intent.getIntExtra("id_act_service_maintenance", 0);
+                App.addItem(
+                        id_act_service_maintenance,
                         iid_type_work,
                         scode,
                         sname,
@@ -152,9 +147,10 @@ public class Edit_item_sto_car_activity extends AppCompatActivity {
                         iipriceItem,
                         iipriceWork
                 );
+                App.readData();
                 finish();
+
             }
         });
     }
-
 }

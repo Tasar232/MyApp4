@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.List_sto_car_Activity">
+    tools:context=".activity.List_act_service_maintenance_car_Activity">
 
     <TextView
         android:id="@+id/tvYearInfCarEdit"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvModelInfCarEdit" />
 
     <ImageView
-        android:id="@+id/ivCarSTO"
+        android:id="@+id/ivCarServiceMaintenance"
         android:layout_width="127dp"
         android:layout_height="127dp"
         android:layout_marginStart="8dp"
@@ -62,7 +62,7 @@
         tools:srcCompat="@drawable/ic_car" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvList_sto"
+        android:id="@+id/rvList_service_maintenance"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -73,7 +73,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvGosInfCarEdit" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabAddSTO"
+        android:id="@+id/fabAddServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="32dp"
@@ -92,7 +92,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Марка"
-        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintStart_toEndOf="@+id/ivCarServiceMaintenance"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -102,7 +102,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Модель"
-        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintStart_toEndOf="@+id/ivCarServiceMaintenance"
         app:layout_constraintTop_toBottomOf="@+id/tvMarkInfCar" />
 
     <TextView
@@ -112,7 +112,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Пробег"
-        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintStart_toEndOf="@+id/ivCarServiceMaintenance"
         app:layout_constraintTop_toBottomOf="@+id/etModelAddCar" />
 
     <TextView
@@ -122,7 +122,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Год"
-        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintStart_toEndOf="@+id/ivCarServiceMaintenance"
         app:layout_constraintTop_toBottomOf="@+id/etMileageAddCar" />
 
     <TextView
@@ -132,7 +132,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:text="Гос. номер"
-        app:layout_constraintStart_toEndOf="@+id/ivCarSTO"
+        app:layout_constraintStart_toEndOf="@+id/ivCarServiceMaintenance"
         app:layout_constraintTop_toBottomOf="@+id/tvYearInfCar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

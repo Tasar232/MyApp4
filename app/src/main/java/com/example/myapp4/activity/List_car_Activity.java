@@ -7,8 +7,6 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.PopupMenu;
@@ -58,7 +56,7 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
 
     @Override
     public void onClickListenerRecyclerViewMore_Car(int position) {
-        Intent intent = new Intent(this, List_sto_car_Activity.class);
+        Intent intent = new Intent(this, List_act_service_maintenance_car_Activity.class);
         int id_car = App.getListCars().get(position).getId();
         intent.putExtra("id_car", id_car);
         startActivity(intent);
@@ -88,6 +86,7 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
                                 App.deleteCar(id_car);
                                 Toast.makeText(List_car_Activity.this, "Машина удалена!", Toast.LENGTH_LONG)
                                         .show();
+                                initializeAdapterCar();
                             }
                         });
                         builder.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
@@ -98,6 +97,7 @@ public class List_car_Activity extends AppCompatActivity implements AdapterCar.I
                         builder.setCancelable(true);
                         builder.create();
                         builder.show();
+
                         break;
                     case R.id.editContext:
                         Intent intentEditCar = new Intent(getApplicationContext(), Edit_car_activity.class);

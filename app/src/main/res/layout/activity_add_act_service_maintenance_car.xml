@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.Add_sto_car_activity">
+    tools:context=".activity.Add_act_service_maintenance_car_activity">
 
     <EditText
-        android:id="@+id/etDateAddSto"
+        android:id="@+id/etDateAddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -18,10 +18,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerAddSTO" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAddActServiceMaintenance" />
 
     <EditText
-        android:id="@+id/etCompanyAddSto"
+        android:id="@+id/etCompanyAddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -31,10 +31,10 @@
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMileageNowAddSto" />
+        app:layout_constraintTop_toBottomOf="@+id/etMileageNowAddActServiceMaintenance" />
 
     <EditText
-        android:id="@+id/etMileageNowAddSto"
+        android:id="@+id/etMileageNowAddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -44,10 +44,10 @@
         android:inputType="number"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etDateAddSto" />
+        app:layout_constraintTop_toBottomOf="@+id/etDateAddActServiceMaintenance" />
 
     <Spinner
-        android:id="@+id/spinnerAddSTO"
+        android:id="@+id/spinnerAddActServiceMaintenance"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btAddSTO"
+        android:id="@+id/btAddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -68,14 +68,35 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <MultiAutoCompleteTextView
-        android:id="@+id/mtvDescAddSto"
+        android:id="@+id/mtvDescAddActServiceMaintenance"
         android:layout_width="288dp"
         android:layout_height="146dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Описание"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCompanyAddSto" />
+        app:layout_constraintTop_toBottomOf="@+id/etCompanyAddActServiceMaintenance" />
+
+    <TextView
+        android:id="@+id/tvStar1AddActServiceMaintenance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="*"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/spinnerAddActServiceMaintenance"
+        app:layout_constraintTop_toTopOf="@+id/spinnerAddActServiceMaintenance" />
+
+    <TextView
+        android:id="@+id/tvDescripStarAddActServiceMaintenance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="8dp"
+        android:text="* - обязательные поля"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mtvDescAddActServiceMaintenance" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

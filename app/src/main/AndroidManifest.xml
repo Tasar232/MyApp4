@@ -11,31 +11,40 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp4">
         <activity
-            android:name=".activity.Edit_item_sto_car_activity"
+            android:name=".activity.Edit_item_act_service_maintenance_car_activity"
+            android:label="Редактирование"
             android:exported="false" />
         <activity
-            android:name=".activity.Edit_sto_car_activity"
+            android:name=".activity.Edit_act_service_maintenance_car_activity"
+            android:label="Редактирование"
             android:exported="false" />
         <activity
             android:name=".activity.Edit_car_activity"
+            android:label="Редактирование"
             android:exported="false" />
         <activity
-            android:name=".activity.Add_item_sto_car_activity"
+            android:name=".activity.Add_item_act_service_maintenance_car_activity"
+            android:label="Добавление"
             android:exported="false" />
         <activity
-            android:name=".activity.List_item_sto_car_Activity"
+            android:name=".activity.List_item_service_maintenance_car_Activity"
+            android:label="Запчасти и работа"
             android:exported="false" />
         <activity
-            android:name=".activity.Add_sto_car_activity"
+            android:name=".activity.Add_act_service_maintenance_car_activity"
+            android:label="Добавление"
             android:exported="false" />
         <activity
             android:name=".activity.Add_car_activity"
+            android:label="Добавление"
             android:exported="false" />
         <activity
-            android:name=".activity.List_sto_car_Activity"
+            android:name=".activity.List_act_service_maintenance_car_Activity"
+            android:label="Список актов СТО"
             android:exported="false" />
         <activity
             android:name=".activity.List_car_Activity"
+            android:label="Список машин"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

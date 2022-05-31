@@ -1,7 +1,7 @@
 package com.example.myapp4.logic.cars;
 
 import com.example.myapp4.logic.OSAGO.PolicyOSAGO;
-import com.example.myapp4.logic.sto.StoCar;
+import com.example.myapp4.logic.sto.ServiceMaintenanceCar;
 
 import java.util.ArrayList;
 
@@ -12,20 +12,18 @@ public class Car {
     private String model;
     private int yearCar;
     private int mileageCar;
-    private String seriesSTS;
-    private int numberSTS;
+    private String reg_certificate;
     private String gosNumber;
     private ArrayList<PolicyOSAGO> listPolicy;
-    private ArrayList<StoCar> listSto;
+    private ArrayList<ServiceMaintenanceCar> listSto;
 
-    public Car(int id, String mark, String model, int mileage, int year, String seriesSTS, int numberSTS, String gosNumber) {
+    public Car(int id, String mark, String model, int mileage, int year, String reg_certificate, String gosNumber) {
         this.id = id;
         this.mark = mark;
         this.model = model;
         this.yearCar = year;
         this.mileageCar = mileage;
-        this.seriesSTS = seriesSTS;
-        this.numberSTS = numberSTS;
+        this.reg_certificate = reg_certificate;
         this.gosNumber = gosNumber;
         this.listPolicy =  new ArrayList<>();
         this.listSto = new ArrayList<>();
@@ -42,8 +40,7 @@ public class Car {
     public String getGosNumber(){return gosNumber;}
     public int getYearCar(){return yearCar;}
     public int getMileageCar(){return mileageCar;}
-    public String getSeriesSTS(){return seriesSTS; }
-    public int getNumberSTS(){return numberSTS;}
+    public String getRegCertificate(){return reg_certificate;}
 
     ///Что касается списка полисов ОСАГО
     public ArrayList<PolicyOSAGO> getListPolicy(){
@@ -67,14 +64,14 @@ public class Car {
 
 
     //Что касается списка СТО
-    public ArrayList<StoCar> getListSto(){return listSto;}
-    public StoCar getSTO(int index){return listSto.get(index);}
-    public void addSTO(StoCar carsto){listSto.add(carsto);}
-    public void remoteSTO(int index){listSto.remove(index);}
-    public void editSTO(StoCar carsto, int index){
-        listSto.set(index, carsto);
+    public ArrayList<ServiceMaintenanceCar> getListServiceMaintenance(){return listSto;}
+    public ServiceMaintenanceCar getServiceMaintenance(int index){return listSto.get(index);}
+    public void addServiceMaintenance(ServiceMaintenanceCar serviceMaintenanceCar){listSto.add(serviceMaintenanceCar);}
+    public void remoteServiceMaintenance(int index){listSto.remove(index);}
+    public void editServiceMaintenance(ServiceMaintenanceCar serviceMaintenanceCar, int index){
+        listSto.set(index, serviceMaintenanceCar);
     }
-    public int getSizeSTOs(){return listSto.size();}
+    public int getSizeServiceMaintenances(){return listSto.size();}
 
 }
 

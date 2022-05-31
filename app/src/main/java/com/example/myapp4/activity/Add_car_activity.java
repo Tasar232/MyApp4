@@ -3,18 +3,18 @@ package com.example.myapp4.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapp4.App;
 import com.example.myapp4.R;
 
 public class Add_car_activity extends AppCompatActivity {
-    private EditText edMark, edModel, edMil, edYear, edSer, edNum, edGosNum;
+    private EditText edMark, edModel, edMil, edYear, edRegCertificate, edGosNum;
     private Button btAddCar;
 
     @Override
@@ -37,13 +37,14 @@ public class Add_car_activity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
+
     private void setAddCarButton(){
         edMark = findViewById(R.id.etMarkAddCar);
         edModel = findViewById(R.id.etModelAddCar);
         edMil = findViewById(R.id.etMileageAddCar);
         edYear = findViewById(R.id.etYearAddCar);
-        edSer = findViewById(R.id.etSerSTS);
-        edNum = findViewById(R.id.etNumSTSAddCar);
+        edRegCertificate = findViewById(R.id.etRegCertificateAddCar);
         edGosNum = findViewById(R.id.etGosNumAddCar);
         btAddCar = findViewById(R.id.btAddCar);
 
@@ -79,15 +80,9 @@ public class Add_car_activity extends AppCompatActivity {
                 catch (NumberFormatException e){
                 }
 
-                String serial = edSer.getText().toString();
-                if (serial.equals("")){
-                    serial = "Не указано";
-                }
-                int number = -1;
-                try {
-                    number = Integer.parseInt(edNum.getText().toString());
-                }
-                catch (NumberFormatException e){
+                String reg_certificate = edRegCertificate.getText().toString();
+                if (reg_certificate.equals("")){
+                    reg_certificate = "Не указано";
                 }
 
                 String gos = edGosNum.getText().toString();
@@ -97,14 +92,12 @@ public class Add_car_activity extends AppCompatActivity {
 
                 final int mil = mileage;
                 final int yea = year;
-                final int num = number;
 
                 App.addCar(mark,
                         model,
                         mil,
                         yea,
-                        serial,
-                        num,
+                        reg_certificate,
                         gos
                 );
                 App.readData();
