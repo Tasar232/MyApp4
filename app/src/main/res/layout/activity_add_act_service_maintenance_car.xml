@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clAddActServiceMaintenance"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.Add_act_service_maintenance_car_activity">
@@ -13,8 +14,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:editable="false"
-        android:ems="10"
-        android:hint="Дата (дд.мм.ггг)"
+        android:hint="Дата"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
 
     <EditText
         android:id="@+id/etCompanyAddActServiceMaintenance"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -30,12 +30,13 @@
         android:hint="Название компании"
         android:inputType="textPersonName"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/etMileageNowAddActServiceMaintenance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etMileageNowAddActServiceMaintenance" />
 
     <EditText
         android:id="@+id/etMileageNowAddActServiceMaintenance"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
@@ -43,17 +44,21 @@
         android:hint="Текущий пробег"
         android:inputType="number"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toEndOf="@+id/spinnerAddActServiceMaintenance"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etDateAddActServiceMaintenance" />
 
     <Spinner
         android:id="@+id/spinnerAddActServiceMaintenance"
-        android:layout_width="250dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
         android:contentDescription="@string/app_name"
         android:minHeight="48dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvStar1AddActServiceMaintenance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,19 +66,19 @@
         android:id="@+id/btAddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
         android:layout_marginBottom="64dp"
         android:text="Добавить"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/mtvDescAddActServiceMaintenance" />
 
     <MultiAutoCompleteTextView
         android:id="@+id/mtvDescAddActServiceMaintenance"
-        android:layout_width="288dp"
+        android:layout_width="0dp"
         android:layout_height="146dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:hint="Описание"
+        app:layout_constraintEnd_toEndOf="@+id/etCompanyAddActServiceMaintenance"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCompanyAddActServiceMaintenance" />
 
@@ -81,11 +86,11 @@
         android:id="@+id/tvStar1AddActServiceMaintenance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
         android:text="*"
         android:textSize="24sp"
-        app:layout_constraintStart_toEndOf="@+id/spinnerAddActServiceMaintenance"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinnerAddActServiceMaintenance" />
 
     <TextView

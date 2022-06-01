@@ -1,12 +1,16 @@
 package com.example.myapp4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.DateKeyListener;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -70,10 +74,23 @@ public class Add_act_service_maintenance_car_activity extends AppCompatActivity 
 
     private void setAddSTOCarButton(){
         date = findViewById(R.id.etDateAddActServiceMaintenance);
+        date.setFocusable(View.NOT_FOCUSABLE);
+
         company = findViewById(R.id.etCompanyAddActServiceMaintenance);
         descrip = findViewById(R.id.mtvDescAddActServiceMaintenance);
         mileage_now = findViewById(R.id.etMileageNowAddActServiceMaintenance);
         btAddSto = findViewById(R.id.btAddActServiceMaintenance);
+        ConstraintLayout constraintLayout = findViewById(R.id.clAddActServiceMaintenance);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+                return view.performClick();
+            }
+        });
 
         date.setOnClickListener(new View.OnClickListener() {
             @Override

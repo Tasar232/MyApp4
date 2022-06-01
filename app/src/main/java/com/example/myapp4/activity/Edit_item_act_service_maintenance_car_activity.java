@@ -1,11 +1,14 @@
 package com.example.myapp4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -107,6 +110,18 @@ public class Edit_item_act_service_maintenance_car_activity extends AppCompatAct
         btEdit = findViewById(R.id.btAddItemActServiceMaintenance);
         btEdit.setText("Сохранить");
 
+
+        ConstraintLayout constraintLayout = findViewById(R.id.clAddItemActServiceMaintenance);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+                return view.performClick();
+            }
+        });
 
 
         btEdit.setOnClickListener(new View.OnClickListener() {

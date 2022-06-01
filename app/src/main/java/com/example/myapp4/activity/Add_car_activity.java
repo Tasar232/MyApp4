@@ -1,10 +1,13 @@
 package com.example.myapp4.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,6 +51,17 @@ public class Add_car_activity extends AppCompatActivity {
         edGosNum = findViewById(R.id.etGosNumAddCar);
         btAddCar = findViewById(R.id.btAddCar);
 
+        ConstraintLayout constraintLayout = findViewById(R.id.clAddCar);
+        constraintLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    InputMethodManager imm = (InputMethodManager) view.getContext().getSystemService(view.getContext().INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
+                return view.performClick();
+            }
+        });
 
 
         btAddCar.setOnClickListener(new View.OnClickListener() {

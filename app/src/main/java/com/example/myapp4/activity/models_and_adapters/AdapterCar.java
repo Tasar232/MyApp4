@@ -43,6 +43,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
         holder.markView.setText(car.getMark());
         holder.modelView.setText(car.getModel());
         holder.gosView.setText(car.getGosNumber());
+        holder.stsView.setText(car.getRegCertificate());
         holder.imCar.setImageResource(R.drawable.ic_car);
 
     }
@@ -54,7 +55,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
-        public TextView markView, modelView, gosView;
+        public TextView markView, modelView, gosView, stsView;
         public ImageView imCar;
 
         ItemOnClickListenerCar itemOnClickListener;
@@ -65,6 +66,7 @@ public class AdapterCar extends RecyclerView.Adapter<AdapterCar.ViewHolder>{
             markView = view.findViewById(R.id.tvMarkCarRV);
             modelView = view.findViewById(R.id.tvModelCarRV);
             gosView = view.findViewById(R.id.tvGosCarRVEdit);
+            stsView = view.findViewById(R.id.tvSTSCarRVEdit);
             imCar = view.findViewById(R.id.ivCarRV);
 
             itemView.setOnClickListener(this);

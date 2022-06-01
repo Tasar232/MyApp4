@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/drawable/side_nav_bar.xml" value="0.1625" />
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_act_service_maintenance_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_act_service_maintenance_car.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_car.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_item_act_service_maintenance_car.xml" value="0.22" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_add_item_sto_car.xml" value="0.4466666666666667" />
@@ -14,7 +14,7 @@
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_edit_item_act_service_maintenance_car.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_edit_item_sto_car.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_edit_sto_car.xml" value="0.17135416666666667" />
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_act_service_maintenance_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_act_service_maintenance_car.xml" value="0.22" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_car.xml" value="0.14780701754385964" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_item_act_maintenance_car.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/activity_list_item_sto_car.xml" value="0.3333333333333333" />
@@ -32,7 +32,7 @@
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_cars.xml" value="0.5" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_item_sto.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_item_sto.xml" value="0.4466666666666667" />
-        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_rv_car.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_rv_car.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_rv_cars.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_rv_item_act_service_maintenance.xml" value="0.5" />
         <entry key="..\:/Users/pilip/AndroidStudioProjects/MyApp4/app/src/main/res/layout/list_rv_item_sto.xml" value="0.17552083333333332" />

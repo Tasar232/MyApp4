@@ -38,7 +38,7 @@ public class AdapterActServiceMaintenance extends RecyclerView.Adapter<AdapterAc
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ServiceMaintenanceCar serviceMaintenanceCar = list_act_service_maintenance.get(position);
+        ServiceMaintenanceCar serviceMaintenanceCar = list_act_service_maintenance.get(list_act_service_maintenance.size() - 1 - position);
         String price = String.valueOf(serviceMaintenanceCar.getTotalPrice());
         String mileage = String.valueOf(serviceMaintenanceCar.getMileageNow());
 
